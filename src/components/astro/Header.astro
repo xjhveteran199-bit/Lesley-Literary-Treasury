@@ -47,6 +47,15 @@ const currentPath = Astro.url.pathname;
       >
         关于
       </a>
+      <a
+        href="/admin"
+        class:list={[
+          'font-body text-sm transition-colors hover:text-terracotta',
+          currentPath === '/admin' ? 'text-terracotta font-bold' : 'text-warm-muted',
+        ]}
+      >
+        管理
+      </a>
     </div>
   </nav>
 </header>

@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
+import { getAllCustomAuthors, type CustomAuthor } from '../../utils/db';
+import { getPortraitUrl } from '../../utils/portraits';
 
 interface Author {
   slug: string;
@@ -9,15 +11,46 @@ interface Author {
   categories: string[];
   audio?: { file: string; quote: { zh: string; original?: string }; duration: number };
   years: { birth: number; death: number | null };
+  isCustom?: boolean;
 }
 
 interface WorldMapProps {
   authors: Author[];
 }
 
-export default function WorldMap({ authors }: WorldMapProps) {
+function customToAuthor(c: CustomAuthor): Author {
+  return {
+    slug: c.id,
+    name: c.name,
+    location: c.location,
+    portrait: getPortraitUrl(c.name.original || c.name.zh, c.portrait),
+    color: c.color,
+    categories: c.categories,
+    audio: c.audio || undefined,
+    years: c.years,
+    isCustom: true,
+  };
+}
+
+export default function WorldMap({ authors: staticAuthors }: WorldMapProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
+  const [customAuthors, setCustomAuthors] = useState<Author[]>([]);
+
+  useEffect(() => {
+    getAllCustomAuthors().then(list => {
+      setCustomAuthors(list.filter(a => a.location.coordinates.lat !== 0 || a.location.coordinates.lng !== 0).map(customToAuthor));
+    });
+  }, []);
+
+  // Merge static + custom, use DiceBear for static author portraits too
+  const authors = [
+    ...staticAuthors.map(a => ({
+      ...a,
+      portrait: getPortraitUrl(a.name.original || a.name.zh),
+    })),
+    ...customAuthors,
+  ];
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
@@ -117,7 +150,7 @@ export default function WorldMap({ authors }: WorldMapProps) {
                 <p style="font-size:12px;color:#2D2A26;font-style:italic;margin:0;">「${author.audio.quote.zh}」</p>
               </div>
             ` : ''}
-            <a href="/authors/${author.slug}" style="display:block;text-align:center;padding:8px;border-radius:12px;color:white;font-size:14px;font-weight:700;text-decoration:none;background:${author.color};">
+            <a href="${author.isCustom ? `/custom?id=${author.slug}` : `/authors/${author.slug}`}" style="display:block;text-align:center;padding:8px;border-radius:12px;color:white;font-size:14px;font-weight:700;text-decoration:none;background:${author.color};">
               探索 ${author.name.zh} 的世界
             </a>
           </div>

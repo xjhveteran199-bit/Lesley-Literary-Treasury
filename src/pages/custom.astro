@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/astro/Header.astro';
+import CustomAuthorView from '../components/react/CustomAuthorView';
+---
+
+<BaseLayout title="作家详情 — Lesley的文学宝鉴">
+  <Header />
+  <main class="pt-14">
+    <CustomAuthorView client:load slug="" />
+  </main>
+</BaseLayout>
+
+<script>
+  // Read slug from query parameter: /custom?id=some-slug
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('id') || '';
+  if (slug) {
+    window.__customAuthorSlug = slug;
+    window.dispatchEvent(new CustomEvent('custom-author-slug', { detail: slug }));
+  }
+</script>

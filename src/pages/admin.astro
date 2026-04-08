@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/astro/Header.astro';
+import AdminPanel from '../components/react/AdminPanel';
+---
+
+<BaseLayout title="管理面板 — Lesley的文学宝鉴">
+  <Header />
+
+  <main class="pt-20 pb-16 px-4 max-w-4xl mx-auto page-enter">
+    <div class="text-center mb-10">
+      <h1 class="font-display text-3xl font-bold text-warm-dark mb-3">
+        ⚙️ 管理面板
+      </h1>
+      <p class="font-body text-warm-muted max-w-lg mx-auto">
+        添加、编辑或删除自定义作家档案。数据保存在浏览器本地。
+      </p>
+    </div>
+
+    <AdminPanel client:load />
+  </main>
+</BaseLayout>

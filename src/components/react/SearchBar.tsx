@@ -1,4 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { getAllCustomAuthors, type CustomAuthor } from '../../utils/db';
+import { getPortraitUrl } from '../../utils/portraits';
 
 interface Author {
   slug: string;
@@ -8,6 +10,7 @@ interface Author {
   color: string;
   portrait: string;
   location: { birthplace: string; country: string };
+  isCustom?: boolean;
 }
 
 interface SearchBarProps {
@@ -21,10 +24,34 @@ const categoryLabels: Record<string, string> = {
 
 type SortMode = 'name' | 'year' | 'country';
 
-export default function SearchBar({ authors }: SearchBarProps) {
+export default function SearchBar({ authors: staticAuthors }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [sortMode, setSortMode] = useState<SortMode>('name');
+  const [customAuthors, setCustomAuthors] = useState<Author[]>([]);
+
+  useEffect(() => {
+    getAllCustomAuthors().then(list => {
+      setCustomAuthors(list.map(c => ({
+        slug: c.id,
+        name: c.name,
+        categories: c.categories,
+        years: c.years,
+        color: c.color,
+        portrait: getPortraitUrl(c.name.original || c.name.zh, c.portrait),
+        location: { birthplace: c.location.birthplace, country: c.location.country },
+        isCustom: true,
+      })));
+    });
+  }, []);
+
+  const authors = [
+    ...staticAuthors.map(a => ({
+      ...a,
+      portrait: getPortraitUrl(a.name.original || a.name.zh),
+    })),
+    ...customAuthors,
+  ];
 
   const categories = useMemo(() => [...new Set(authors.flatMap(a => a.categories))], [authors]);
 
@@ -120,7 +147,7 @@ export default function SearchBar({ authors }: SearchBarProps) {
         {filtered.map((author, i) => (
           <a
             key={author.slug}
-            href={`/authors/${author.slug}`}
+            href={author.isCustom ? `/custom?id=${author.slug}` : `/authors/${author.slug}`}
             className="sketch-card p-4 text-center group"
             style={{ animationDelay: `${i * 30}ms` }}
           >
