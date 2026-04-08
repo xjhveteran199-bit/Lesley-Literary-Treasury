@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B735520"/>
+      <stop offset="100%" style="stop-color:#8B735540"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- tree branch top-right -->
+  <path d="M155 30 Q160 45 170 55" stroke="#8B7355" stroke-width="2" fill="none" opacity="0.25"/>
+  <path d="M162 40 Q168 35 175 38" stroke="#8B7355" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <path d="M165 48 Q172 45 178 50" stroke="#8B7355" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <circle cx="178" cy="36" r="3" fill="#8B7355" opacity="0.15"/>
+  <circle cx="180" cy="49" r="3" fill="#8B7355" opacity="0.15"/>
+  <!-- branch bottom-left -->
+  <path d="M45 160 Q38 150 30 145" stroke="#8B7355" stroke-width="2" fill="none" opacity="0.2"/>
+  <path d="M38 152 Q32 155 25 152" stroke="#8B7355" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <circle cx="23" cy="143" r="3" fill="#8B7355" opacity="0.12"/>
+  <circle cx="22" cy="152" r="2.5" fill="#8B7355" opacity="0.12"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#8B7355">卡</text>
+</svg>

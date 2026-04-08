@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5B6B7B20"/>
+      <stop offset="100%" style="stop-color:#5B6B7B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- cross top-right -->
+  <line x1="158" y1="30" x2="158" y2="58" stroke="#5B6B7B" stroke-width="2.5" opacity="0.25" stroke-linecap="round"/>
+  <line x1="146" y1="40" x2="170" y2="40" stroke="#5B6B7B" stroke-width="2.5" opacity="0.25" stroke-linecap="round"/>
+  <!-- small cross bottom-left -->
+  <line x1="40" y1="148" x2="40" y2="168" stroke="#5B6B7B" stroke-width="2" opacity="0.18" stroke-linecap="round"/>
+  <line x1="32" y1="155" x2="48" y2="155" stroke="#5B6B7B" stroke-width="2" opacity="0.18" stroke-linecap="round"/>
+  <!-- tiny cross -->
+  <line x1="45" y1="38" x2="45" y2="50" stroke="#5B6B7B" stroke-width="1.5" opacity="0.12" stroke-linecap="round"/>
+  <line x1="40" y1="42" x2="50" y2="42" stroke="#5B6B7B" stroke-width="1.5" opacity="0.12" stroke-linecap="round"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#5B6B7B">陀</text>
+</svg>

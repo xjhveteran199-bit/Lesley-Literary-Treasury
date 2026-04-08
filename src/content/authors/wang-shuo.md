@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1958
   death: null
-portrait: "/images/authors/wang-shuo.webp"
+portrait: "/images/authors/wang-shuo.svg"
 color: "#D4534B"
 audio:
   file: "/audio/wang-shuo.mp3"

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B6B5B20"/>
+      <stop offset="100%" style="stop-color:#7B6B5B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <rect x="148" y="25" width="16" height="16" rx="2" fill="none" stroke="#7B6B5B" stroke-width="1.2" opacity="0.2"/><rect x="148" y="43" width="16" height="16" rx="2" fill="none" stroke="#7B6B5B" stroke-width="1.2" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#7B6B5B">胡</text>
+</svg>

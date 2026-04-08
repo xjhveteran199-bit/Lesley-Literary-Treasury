@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B6B8D20"/>
+      <stop offset="100%" style="stop-color:#6B6B8D40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- labyrinth pattern top-left -->
+  <path d="M30 40 L50 40 L50 55 L35 55 L35 45 L45 45 L45 50 L40 50" stroke="#6B6B8D" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <!-- labyrinth pattern bottom-right -->
+  <path d="M150 145 L170 145 L170 160 L155 160 L155 150 L165 150 L165 155 L160 155" stroke="#6B6B8D" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <!-- small maze element -->
+  <path d="M155 38 L168 38 L168 48 L158 48 L158 42 L164 42" stroke="#6B6B8D" stroke-width="1" fill="none" opacity="0.15"/>
+  <path d="M32 148 L45 148 L45 158 L35 158 L35 152 L42 152" stroke="#6B6B8D" stroke-width="1" fill="none" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#6B6B8D">博</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6A8E7F20"/>
+      <stop offset="100%" style="stop-color:#6A8E7F40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M40 50 Q35 40 40 30 Q48 35 45 45 Q50 38 55 45 Q48 50 40 50Z" fill="none" stroke="#6A8E7F" stroke-width="1.5" opacity="0.25"/>
+  <path d="M160 150 Q155 140 160 130 Q168 135 165 145 Q170 138 175 145 Q168 150 160 150Z" fill="none" stroke="#6A8E7F" stroke-width="1.5" opacity="0.25"/>
+  <circle cx="35" cy="140" r="10" fill="none" stroke="#6A8E7F" stroke-width="1" opacity="0.15"/>
+  <circle cx="35" cy="140" r="5" fill="none" stroke="#6A8E7F" stroke-width="1" opacity="0.15"/>
+  <circle cx="165" cy="55" r="8" fill="none" stroke="#6A8E7F" stroke-width="1" opacity="0.15"/>
+  <circle cx="165" cy="55" r="4" fill="none" stroke="#6A8E7F" stroke-width="1" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#6A8E7F">林</text>
+</svg>

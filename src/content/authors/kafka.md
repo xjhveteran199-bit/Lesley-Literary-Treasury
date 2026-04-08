@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1883
   death: 1924
-portrait: "/images/authors/kafka.webp"
+portrait: "/images/authors/kafka.svg"
 color: "#6B7B8D"
 audio:
   file: "/audio/kafka.mp3"

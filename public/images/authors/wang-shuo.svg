@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4534B20"/>
+      <stop offset="100%" style="stop-color:#D4534B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <polyline points="25,50 35,40 45,50 55,40 65,50" stroke="#D4534B" stroke-width="2" fill="none" opacity="0.25"/>
+  <polyline points="135,150 145,140 155,150 165,140 175,150" stroke="#D4534B" stroke-width="2" fill="none" opacity="0.25"/>
+  <polyline points="20,100 28,90 36,100 44,90" stroke="#D4534B" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <polyline points="156,100 164,90 172,100 180,90" stroke="#D4534B" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <polyline points="70,25 78,18 86,25" stroke="#D4534B" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <polyline points="110,175 118,168 126,175" stroke="#D4534B" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#D4534B">王</text>
+</svg>

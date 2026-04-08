@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B7B5B20"/>
+      <stop offset="100%" style="stop-color:#7B7B5B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M40 35 Q50 25 60 35" fill="none" stroke="#7B7B5B" stroke-width="1.5" opacity="0.25"/><line x1="43" y1="35" x2="43" y2="55" stroke="#7B7B5B" stroke-width="1" opacity="0.2"/><line x1="50" y1="32" x2="50" y2="55" stroke="#7B7B5B" stroke-width="1" opacity="0.2"/><line x1="57" y1="35" x2="57" y2="55" stroke="#7B7B5B" stroke-width="1" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#7B7B5B">荷</text>
+</svg>

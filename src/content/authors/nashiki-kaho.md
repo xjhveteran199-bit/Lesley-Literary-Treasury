@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1959
   death: null
-portrait: "/images/authors/nashiki-kaho.webp"
+portrait: "/images/authors/nashiki-kaho.svg"
 color: "#8FB996"
 audio:
   file: "/audio/nashiki-kaho.mp3"

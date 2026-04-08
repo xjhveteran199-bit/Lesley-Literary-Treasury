@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4856A20"/>
+      <stop offset="100%" style="stop-color:#C4856A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M20 160 Q40 150 60 160 Q80 170 100 160" stroke="#C4856A" stroke-width="2" fill="none" opacity="0.2"/>
+  <path d="M100 160 Q120 150 140 160 Q160 170 180 160" stroke="#C4856A" stroke-width="2" fill="none" opacity="0.2"/>
+  <path d="M15 170 Q35 160 55 170 Q75 180 95 170" stroke="#C4856A" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <path d="M105 170 Q125 160 145 170 Q165 180 185 170" stroke="#C4856A" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <path d="M30 40 Q50 32 70 40" stroke="#C4856A" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <path d="M130 35 Q150 27 170 35" stroke="#C4856A" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#C4856A">依</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B7B8D20"/>
+      <stop offset="100%" style="stop-color:#6B7B8D40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <rect x="30" y="35" width="12" height="12" fill="#6B7B8D" opacity="0.2" transform="rotate(15 36 41)"/>
+  <rect x="155" y="50" width="15" height="15" fill="#6B7B8D" opacity="0.25" transform="rotate(30 162 57)"/>
+  <polygon points="45,160 55,150 55,165" fill="#6B7B8D" opacity="0.2"/>
+  <rect x="145" y="145" width="10" height="10" fill="#6B7B8D" opacity="0.2" transform="rotate(45 150 150)"/>
+  <polygon points="100,22 105,32 95,32" fill="#6B7B8D" opacity="0.15"/>
+  <rect x="25" y="95" width="8" height="8" fill="#6B7B8D" opacity="0.15" transform="rotate(20 29 99)"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#6B7B8D">卡</text>
+</svg>

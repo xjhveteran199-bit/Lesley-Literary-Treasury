@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A0785A20"/>
+      <stop offset="100%" style="stop-color:#A0785A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- sun -->
+  <circle cx="155" cy="42" r="12" fill="#A0785A" opacity="0.15"/>
+  <circle cx="155" cy="42" r="8" fill="#A0785A" opacity="0.1"/>
+  <line x1="155" y1="22" x2="155" y2="28" stroke="#A0785A" stroke-width="1.5" opacity="0.2"/>
+  <line x1="155" y1="56" x2="155" y2="62" stroke="#A0785A" stroke-width="1.5" opacity="0.2"/>
+  <line x1="135" y1="42" x2="141" y2="42" stroke="#A0785A" stroke-width="1.5" opacity="0.2"/>
+  <line x1="169" y1="42" x2="175" y2="42" stroke="#A0785A" stroke-width="1.5" opacity="0.2"/>
+  <line x1="141" y1="28" x2="145" y2="32" stroke="#A0785A" stroke-width="1.5" opacity="0.15"/>
+  <line x1="165" y1="52" x2="169" y2="56" stroke="#A0785A" stroke-width="1.5" opacity="0.15"/>
+  <line x1="141" y1="56" x2="145" y2="52" stroke="#A0785A" stroke-width="1.5" opacity="0.15"/>
+  <line x1="165" y1="32" x2="169" y2="28" stroke="#A0785A" stroke-width="1.5" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#A0785A">加</text>
+</svg>

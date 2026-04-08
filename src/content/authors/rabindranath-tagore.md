@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1861
   death: 1941
-portrait: "/images/authors/rabindranath-tagore.webp"
+portrait: "/images/authors/rabindranath-tagore.svg"
 color: "#D4A76A"
 audio:
   file: "/audio/rabindranath-tagore.mp3"

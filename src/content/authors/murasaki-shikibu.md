@@ -14,7 +14,7 @@ era: "11世纪"
 years:
   birth: 978
   death: 1014
-portrait: "/images/authors/murasaki-shikibu.webp"
+portrait: "/images/authors/murasaki-shikibu.svg"
 color: "#8B6B8B"
 audio:
   file: "/audio/murasaki-shikibu.mp3"

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1953
   death: 2003
-portrait: "/images/authors/roberto-bolano.webp"
+portrait: "/images/authors/roberto-bolano.svg"
 color: "#6B5B4B"
 audio:
   file: "/audio/roberto-bolano.mp3"

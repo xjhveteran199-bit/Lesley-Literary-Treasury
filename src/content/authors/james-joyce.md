@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1882
   death: 1941
-portrait: "/images/authors/james-joyce.webp"
+portrait: "/images/authors/james-joyce.svg"
 color: "#5B6B5B"
 audio:
   file: "/audio/james-joyce.mp3"

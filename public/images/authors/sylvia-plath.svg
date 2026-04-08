@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7A6B8B20"/>
+      <stop offset="100%" style="stop-color:#7A6B8B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- bell top-right -->
+  <path d="M150 35 Q150 50 142 58 L168 58 Q160 50 160 35 Q160 28 155 25 Q150 28 150 35Z" fill="none" stroke="#7A6B8B" stroke-width="1.5" opacity="0.25"/>
+  <circle cx="155" cy="62" r="2.5" fill="#7A6B8B" opacity="0.25"/>
+  <line x1="140" y1="58" x2="170" y2="58" stroke="#7A6B8B" stroke-width="1.5" opacity="0.2"/>
+  <!-- small bell bottom-left -->
+  <path d="M35 148 Q35 158 30 163 L46 163 Q41 158 41 148 Q41 143 38 141 Q35 143 35 148Z" fill="none" stroke="#7A6B8B" stroke-width="1.2" opacity="0.18"/>
+  <circle cx="38" cy="166" r="2" fill="#7A6B8B" opacity="0.18"/>
+  <line x1="28" y1="163" x2="48" y2="163" stroke="#7A6B8B" stroke-width="1.2" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#7A6B8B">西</text>
+</svg>

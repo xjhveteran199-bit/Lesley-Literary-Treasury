@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#B8733320"/>
+      <stop offset="100%" style="stop-color:#B8733340"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M140 60 Q150 30 160 60" fill="#B87333" opacity="0.15"/><line x1="150" y1="28" x2="150" y2="22" stroke="#B87333" stroke-width="1.2" opacity="0.25"/><circle cx="45" cy="160" r="5" fill="#B87333" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#B87333">帕</text>
+</svg>

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1899
   death: 1986
-portrait: "/images/authors/jorge-luis-borges.webp"
+portrait: "/images/authors/jorge-luis-borges.svg"
 color: "#6B6B8D"
 audio:
   file: "/audio/jorge-luis-borges.mp3"

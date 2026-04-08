@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1932
   death: 1963
-portrait: "/images/authors/sylvia-plath.webp"
+portrait: "/images/authors/sylvia-plath.svg"
 color: "#7A6B8B"
 audio:
   file: "/audio/sylvia-plath.mp3"

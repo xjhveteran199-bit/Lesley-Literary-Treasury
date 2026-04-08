@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B8B9A20"/>
+      <stop offset="100%" style="stop-color:#7B8B9A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M20 155 Q40 145 60 155 Q80 165 100 155 Q120 145 140 155 Q160 165 180 155" stroke="#7B8B9A" stroke-width="2" fill="none" opacity="0.2"/>
+  <path d="M15 165 Q35 155 55 165 Q75 175 95 165 Q115 155 135 165 Q155 175 175 165" stroke="#7B8B9A" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <path d="M25 175 Q45 165 65 175 Q85 185 105 175 Q125 165 145 175 Q165 185 185 175" stroke="#7B8B9A" stroke-width="1" fill="none" opacity="0.1"/>
+  <path d="M40 35 Q60 28 80 35 Q100 42 120 35 Q140 28 160 35" stroke="#7B8B9A" stroke-width="1.5" fill="none" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#7B8B9A">弗</text>
+</svg>

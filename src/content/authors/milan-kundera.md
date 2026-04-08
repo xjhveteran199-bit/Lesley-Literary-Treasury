@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1929
   death: 2023
-portrait: "/images/authors/milan-kundera.webp"
+portrait: "/images/authors/milan-kundera.svg"
 color: "#8B6B5B"
 audio:
   file: "/audio/milan-kundera.mp3"

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A667020"/>
+      <stop offset="100%" style="stop-color:#4A667040"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- cat silhouette top-right -->
+  <path d="M155 40 L152 28 L148 38 L144 26 L140 38 Q135 42 135 50 Q135 58 142 62 Q150 66 158 62 Q165 58 165 50 Q165 42 160 38Z" fill="#4A6670" opacity="0.2"/>
+  <circle cx="147" cy="48" r="2" fill="#4A6670" opacity="0.3"/>
+  <circle cx="157" cy="48" r="2" fill="#4A6670" opacity="0.3"/>
+  <!-- small cat bottom-left -->
+  <path d="M42 155 L40 148 L38 154 L36 147 L34 154 Q31 156 31 160 Q31 164 35 166 Q39 168 43 166 Q47 164 47 160 Q47 156 44 154Z" fill="#4A6670" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#4A6670">村</text>
+</svg>

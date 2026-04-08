@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C75B3A20"/>
+      <stop offset="100%" style="stop-color:#C75B3A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <line x1="100" y1="15" x2="100" y2="30" stroke="#C75B3A" stroke-width="2" opacity="0.25"/>
+  <line x1="130" y1="20" x2="125" y2="35" stroke="#C75B3A" stroke-width="2" opacity="0.2"/>
+  <line x1="70" y1="20" x2="75" y2="35" stroke="#C75B3A" stroke-width="2" opacity="0.2"/>
+  <line x1="155" y1="35" x2="145" y2="48" stroke="#C75B3A" stroke-width="1.5" opacity="0.15"/>
+  <line x1="45" y1="35" x2="55" y2="48" stroke="#C75B3A" stroke-width="1.5" opacity="0.15"/>
+  <line x1="170" y1="60" x2="158" y2="68" stroke="#C75B3A" stroke-width="1.5" opacity="0.12"/>
+  <line x1="30" y1="60" x2="42" y2="68" stroke="#C75B3A" stroke-width="1.5" opacity="0.12"/>
+  <circle cx="100" cy="12" r="5" fill="#C75B3A" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#C75B3A">安</text>
+</svg>

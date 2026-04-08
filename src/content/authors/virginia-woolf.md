@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1882
   death: 1941
-portrait: "/images/authors/virginia-woolf.webp"
+portrait: "/images/authors/virginia-woolf.svg"
 color: "#7B8B9A"
 audio:
   file: "/audio/virginia-woolf.mp3"

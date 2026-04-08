@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1962
   death: null
-portrait: "/images/authors/olga-tokarczuk.webp"
+portrait: "/images/authors/olga-tokarczuk.svg"
 color: "#7B8B7B"
 audio:
   file: "/audio/olga-tokarczuk.mp3"

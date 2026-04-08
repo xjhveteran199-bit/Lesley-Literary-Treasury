@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1920
   death: 1995
-portrait: "/images/authors/zhang-ailing.webp"
+portrait: "/images/authors/zhang-ailing.svg"
 color: "#C4788E"
 audio:
   file: "/audio/zhang-ailing.mp3"

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4788E20"/>
+      <stop offset="100%" style="stop-color:#C4788E40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M40 50 L55 30 L60 55 Z" fill="#C4788E" opacity="0.12"/><path d="M40 50 L60 55 L65 35 Z" fill="#C4788E" opacity="0.1"/><circle cx="40" cy="50" r="3" fill="#C4788E" opacity="0.2"/><circle cx="155" cy="160" r="5" fill="#C4788E" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#C4788E">张</text>
+</svg>

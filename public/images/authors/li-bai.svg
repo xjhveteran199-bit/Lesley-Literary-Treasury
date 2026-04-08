@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DAA52020"/>
+      <stop offset="100%" style="stop-color:#DAA52040"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M145 30 Q165 30 165 50 Q155 45 145 50 Q145 30 145 30" fill="#DAA520" opacity="0.2"/><circle cx="45" cy="155" r="5" fill="#DAA520" opacity="0.2"/><circle cx="45" cy="152" r="2" fill="#DAA520" opacity="0.3"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#DAA520">李</text>
+</svg>

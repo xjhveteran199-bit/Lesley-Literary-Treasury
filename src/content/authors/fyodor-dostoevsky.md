@@ -14,7 +14,7 @@ era: "19世纪"
 years:
   birth: 1821
   death: 1881
-portrait: "/images/authors/fyodor-dostoevsky.webp"
+portrait: "/images/authors/fyodor-dostoevsky.svg"
 color: "#5B6B7B"
 audio:
   file: "/audio/fyodor-dostoevsky.mp3"

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1952
   death: null
-portrait: "/images/authors/orhan-pamuk.webp"
+portrait: "/images/authors/orhan-pamuk.svg"
 color: "#B87333"
 audio:
   file: "/audio/orhan-pamuk.mp3"

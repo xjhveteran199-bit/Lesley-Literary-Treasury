@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B6B7B18"/>
+      <stop offset="100%" style="stop-color:#9B6B7B38"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- tropical leaf -->
+  <path d="M155 25 Q165 50 160 80 Q155 60 145 45 Q148 32 155 25Z" fill="#9B6B7B" opacity="0.2"/>
+  <path d="M155 25 Q170 45 168 75 Q163 55 155 40Z" fill="#9B6B7B" opacity="0.15"/>
+  <line x1="155" y1="25" x2="158" y2="78" stroke="#9B6B7B" stroke-width="0.8" opacity="0.25"/>
+  <path d="M35 155 Q42 165 38 180 Q34 168 30 160 Q32 156 35 155Z" fill="#9B6B7B" opacity="0.18"/>
+  <circle cx="45" cy="50" r="5" fill="#9B6B7B" opacity="0.15"/>
+  <circle cx="160" cy="150" r="6" fill="#9B6B7B" opacity="0.18"/>
+  <circle cx="35" cy="100" r="3" fill="#9B6B7B" opacity="0.12"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#9B6B7B">克</text>
+</svg>

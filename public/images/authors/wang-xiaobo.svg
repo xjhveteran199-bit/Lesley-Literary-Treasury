@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B8B6B20"/>
+      <stop offset="100%" style="stop-color:#6B8B6B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <circle cx="155" cy="45" r="10" fill="none" stroke="#6B8B6B" stroke-width="1.5" opacity="0.2"/><circle cx="155" cy="45" r="5" fill="#6B8B6B" opacity="0.1"/><rect x="152" y="32" width="6" height="4" rx="1" fill="#6B8B6B" opacity="0.2"/><rect x="152" y="54" width="6" height="4" rx="1" fill="#6B8B6B" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#6B8B6B">王</text>
+</svg>

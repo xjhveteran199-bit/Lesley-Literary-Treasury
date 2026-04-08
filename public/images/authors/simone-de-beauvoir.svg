@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7B8B20"/>
+      <stop offset="100%" style="stop-color:#8B7B8B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <circle cx="60" cy="38" r="10" fill="none" stroke="#8B7B8B" stroke-width="1.5" opacity="0.25"/><circle cx="85" cy="38" r="10" fill="none" stroke="#8B7B8B" stroke-width="1.5" opacity="0.25"/><line x1="70" y1="38" x2="75" y2="38" stroke="#8B7B8B" stroke-width="1.2" opacity="0.25"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#8B7B8B">波</text>
+</svg>

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1943
   death: null
-portrait: "/images/authors/elena-ferrante.webp"
+portrait: "/images/authors/elena-ferrante.svg"
 color: "#A0522D"
 audio:
   file: "/audio/elena-ferrante.mp3"

@@ -14,7 +14,7 @@ era: "19世纪"
 years:
   birth: 1854
   death: 1900
-portrait: "/images/authors/oscar-wilde.webp"
+portrait: "/images/authors/oscar-wilde.svg"
 color: "#A67B5B"
 audio:
   file: "/audio/oscar-wilde.mp3"

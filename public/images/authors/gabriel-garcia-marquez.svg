@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4A01720"/>
+      <stop offset="100%" style="stop-color:#D4A01740"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- butterfly top-right -->
+  <path d="M155 45 Q165 35 170 45 Q175 55 160 50" fill="#D4A017" opacity="0.25"/>
+  <path d="M155 45 Q145 35 140 45 Q135 55 150 50" fill="#D4A017" opacity="0.2"/>
+  <line x1="155" y1="45" x2="155" y2="55" stroke="#D4A017" stroke-width="1" opacity="0.25"/>
+  <!-- butterfly bottom-left -->
+  <path d="M45 155 Q55 145 58 155 Q62 165 48 160" fill="#D4A017" opacity="0.2"/>
+  <path d="M45 155 Q35 145 32 155 Q28 165 42 160" fill="#D4A017" opacity="0.15"/>
+  <line x1="45" y1="155" x2="45" y2="165" stroke="#D4A017" stroke-width="1" opacity="0.2"/>
+  <!-- tiny butterfly -->
+  <path d="M160 150 Q164 146 166 150 Q168 154 162 152" fill="#D4A017" opacity="0.15"/>
+  <path d="M160 150 Q156 146 154 150 Q152 154 158 152" fill="#D4A017" opacity="0.12"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#D4A017">加</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9E8B7A20"/>
+      <stop offset="100%" style="stop-color:#9E8B7A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- tea cup top-right -->
+  <path d="M145 45 L148 60 Q150 65 160 65 Q170 65 172 60 L175 45 Z" fill="none" stroke="#9E8B7A" stroke-width="1.5" opacity="0.25"/>
+  <path d="M175 50 Q182 50 182 56 Q182 62 175 62" fill="none" stroke="#9E8B7A" stroke-width="1.5" opacity="0.2"/>
+  <line x1="148" y1="67" x2="172" y2="67" stroke="#9E8B7A" stroke-width="1" opacity="0.15"/>
+  <!-- steam -->
+  <path d="M155 40 Q157 35 155 30" stroke="#9E8B7A" stroke-width="1" fill="none" opacity="0.15"/>
+  <path d="M160 40 Q162 34 160 28" stroke="#9E8B7A" stroke-width="1" fill="none" opacity="0.15"/>
+  <path d="M165 40 Q167 35 165 30" stroke="#9E8B7A" stroke-width="1" fill="none" opacity="0.15"/>
+  <!-- small cup bottom-left -->
+  <path d="M30 155 L32 163 Q33 166 38 166 Q43 166 44 163 L46 155 Z" fill="none" stroke="#9E8B7A" stroke-width="1.2" opacity="0.18"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#9E8B7A">普</text>
+</svg>

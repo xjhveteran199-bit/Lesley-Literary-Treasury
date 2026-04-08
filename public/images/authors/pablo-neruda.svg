@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B8B5B20"/>
+      <stop offset="100%" style="stop-color:#6B8B5B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M25 160 Q40 150 55 160 Q70 170 85 160" fill="none" stroke="#6B8B5B" stroke-width="1.5" opacity="0.25"/><path d="M30 170 Q45 160 60 170 Q75 180 90 170" fill="none" stroke="#6B8B5B" stroke-width="1.2" opacity="0.2"/><circle cx="155" cy="40" r="4" fill="#6B8B5B" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#6B8B5B">聂</text>
+</svg>

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1875
   death: 1926
-portrait: "/images/authors/rainer-maria-rilke.webp"
+portrait: "/images/authors/rainer-maria-rilke.svg"
 color: "#7A8B6F"
 audio:
   file: "/audio/rainer-maria-rilke.mp3"

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C1785020"/>
+      <stop offset="100%" style="stop-color:#C1785040"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <path d="M35 155 Q38 140 42 150 Q46 160 40 165 Q34 160 35 155Z" fill="#C17850" opacity="0.25"/>
+  <path d="M155 45 Q160 32 165 42 Q168 52 160 55 Q153 50 155 45Z" fill="#C17850" opacity="0.3"/>
+  <path d="M50 40 Q53 30 56 38 Q58 46 52 48 Q48 44 50 40Z" fill="#C17850" opacity="0.2"/>
+  <path d="M160 150 Q163 140 168 148 Q170 156 164 158 Q158 155 160 150Z" fill="#C17850" opacity="0.2"/>
+  <path d="M28 90 Q30 82 34 88 Q36 94 30 96 Q26 93 28 90Z" fill="#C17850" opacity="0.15"/>
+  <line x1="38" y1="160" x2="38" y2="175" stroke="#C17850" stroke-width="1.5" opacity="0.2"/>
+  <line x1="160" y1="50" x2="162" y2="65" stroke="#C17850" stroke-width="1.5" opacity="0.2"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#C17850">史</text>
+</svg>

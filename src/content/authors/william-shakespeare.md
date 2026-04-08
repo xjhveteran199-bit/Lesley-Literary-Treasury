@@ -14,7 +14,7 @@ era: "16世纪"
 years:
   birth: 1564
   death: 1616
-portrait: "/images/authors/william-shakespeare.webp"
+portrait: "/images/authors/william-shakespeare.svg"
 color: "#8B6914"
 audio:
   file: "/audio/william-shakespeare.mp3"

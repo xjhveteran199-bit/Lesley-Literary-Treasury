@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B6B5B20"/>
+      <stop offset="100%" style="stop-color:#8B6B5B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- music notes -->
+  <circle cx="42" cy="48" r="4" fill="#8B6B5B" opacity="0.25"/>
+  <line x1="46" y1="48" x2="46" y2="30" stroke="#8B6B5B" stroke-width="1.5" opacity="0.25"/>
+  <path d="M46 30 Q52 28 52 34" stroke="#8B6B5B" stroke-width="1.5" fill="none" opacity="0.25"/>
+  <circle cx="160" cy="55" r="3.5" fill="#8B6B5B" opacity="0.2"/>
+  <line x1="163.5" y1="55" x2="163.5" y2="38" stroke="#8B6B5B" stroke-width="1.5" opacity="0.2"/>
+  <path d="M163.5 38 Q169 36 169 42" stroke="#8B6B5B" stroke-width="1.5" fill="none" opacity="0.2"/>
+  <circle cx="45" cy="158" r="3" fill="#8B6B5B" opacity="0.15"/>
+  <line x1="48" y1="158" x2="48" y2="143" stroke="#8B6B5B" stroke-width="1.5" opacity="0.15"/>
+  <circle cx="155" cy="155" r="3.5" fill="#8B6B5B" opacity="0.18"/>
+  <line x1="158.5" y1="155" x2="158.5" y2="140" stroke="#8B6B5B" stroke-width="1.5" opacity="0.18"/>
+  <path d="M158.5 140 Q164 138 164 144" stroke="#8B6B5B" stroke-width="1.5" fill="none" opacity="0.18"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#8B6B5B">米</text>
+</svg>

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1908
   death: 1986
-portrait: "/images/authors/simone-de-beauvoir.webp"
+portrait: "/images/authors/simone-de-beauvoir.svg"
 color: "#8B7B8B"
 audio:
   file: "/audio/simone-de-beauvoir.mp3"

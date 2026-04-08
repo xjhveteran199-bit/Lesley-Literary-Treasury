@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1877
   death: 1962
-portrait: "/images/authors/hermann-hesse.webp"
+portrait: "/images/authors/hermann-hesse.svg"
 color: "#7B9E89"
 audio:
   file: "/audio/hermann-hesse.mp3"

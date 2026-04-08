@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A67B5B20"/>
+      <stop offset="100%" style="stop-color:#A67B5B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- lily top-right -->
+  <ellipse cx="158" cy="40" rx="5" ry="12" fill="#A67B5B" opacity="0.2" transform="rotate(-15 158 40)"/>
+  <ellipse cx="163" cy="42" rx="5" ry="12" fill="#A67B5B" opacity="0.18" transform="rotate(15 163 42)"/>
+  <ellipse cx="155" cy="45" rx="5" ry="11" fill="#A67B5B" opacity="0.15" transform="rotate(-40 155 45)"/>
+  <line x1="160" y1="52" x2="158" y2="70" stroke="#A67B5B" stroke-width="1.5" opacity="0.2"/>
+  <!-- lily bottom-left -->
+  <ellipse cx="38" cy="152" rx="4" ry="9" fill="#A67B5B" opacity="0.15" transform="rotate(20 38 152)"/>
+  <ellipse cx="42" cy="154" rx="4" ry="9" fill="#A67B5B" opacity="0.12" transform="rotate(-20 42 154)"/>
+  <line x1="40" y1="160" x2="38" y2="172" stroke="#A67B5B" stroke-width="1.2" opacity="0.15"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#A67B5B">王</text>
+</svg>

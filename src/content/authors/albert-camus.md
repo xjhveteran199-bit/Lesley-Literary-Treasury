@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1913
   death: 1960
-portrait: "/images/authors/albert-camus.webp"
+portrait: "/images/authors/albert-camus.svg"
 color: "#A0785A"
 audio:
   file: "/audio/albert-camus.mp3"

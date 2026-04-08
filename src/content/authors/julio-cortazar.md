@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1914
   death: 1984
-portrait: "/images/authors/julio-cortazar.webp"
+portrait: "/images/authors/julio-cortazar.svg"
 color: "#7B6B5B"
 audio:
   file: "/audio/julio-cortazar.mp3"

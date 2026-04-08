@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A4A4A20"/>
+      <stop offset="100%" style="stop-color:#4A4A4A40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- pen/brush top-right -->
+  <line x1="158" y1="30" x2="148" y2="65" stroke="#4A4A4A" stroke-width="2.5" opacity="0.25" stroke-linecap="round"/>
+  <path d="M148 65 L146 72 L150 72 Z" fill="#4A4A4A" opacity="0.25"/>
+  <!-- ink dots -->
+  <circle cx="155" cy="75" r="2" fill="#4A4A4A" opacity="0.15"/>
+  <circle cx="160" cy="72" r="1.5" fill="#4A4A4A" opacity="0.12"/>
+  <!-- small brush bottom-left -->
+  <line x1="38" y1="140" x2="48" y2="165" stroke="#4A4A4A" stroke-width="2" opacity="0.18" stroke-linecap="round"/>
+  <path d="M48 165 L46 170 L50 170 Z" fill="#4A4A4A" opacity="0.18"/>
+  <circle cx="42" cy="172" r="1.5" fill="#4A4A4A" opacity="0.12"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#4A4A4A">鲁</text>
+</svg>

@@ -14,7 +14,7 @@ era: "21世纪"
 years:
   birth: 1989
   death: null
-portrait: "/images/authors/linnea-sterte.webp"
+portrait: "/images/authors/linnea-sterte.svg"
 color: "#6A8E7F"
 audio:
   file: "/audio/linnea-sterte.mp3"

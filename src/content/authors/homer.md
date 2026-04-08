@@ -14,7 +14,7 @@ era: "公元前8世纪"
 years:
   birth: -800
   death: -701
-portrait: "/images/authors/homer.webp"
+portrait: "/images/authors/homer.svg"
 color: "#7B7B5B"
 audio:
   file: "/audio/homer.mp3"

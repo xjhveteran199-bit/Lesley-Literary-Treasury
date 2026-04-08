@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1927
   death: 2014
-portrait: "/images/authors/gabriel-garcia-marquez.webp"
+portrait: "/images/authors/gabriel-garcia-marquez.svg"
 color: "#D4A017"
 audio:
   file: "/audio/gabriel-garcia-marquez.mp3"

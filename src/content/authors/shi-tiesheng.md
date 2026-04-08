@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1951
   death: 2010
-portrait: "/images/authors/shi-tiesheng.webp"
+portrait: "/images/authors/shi-tiesheng.svg"
 color: "#C17850"
 audio:
   file: "/audio/shi-tiesheng.mp3"

@@ -14,7 +14,7 @@ era: "13世纪"
 years:
   birth: 1265
   death: 1321
-portrait: "/images/authors/dante-alighieri.webp"
+portrait: "/images/authors/dante-alighieri.svg"
 color: "#8B0000"
 audio:
   file: "/audio/dante-alighieri.mp3"

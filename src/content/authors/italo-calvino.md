@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1923
   death: 1985
-portrait: "/images/authors/italo-calvino.webp"
+portrait: "/images/authors/italo-calvino.svg"
 color: "#8B7355"
 audio:
   file: "/audio/italo-calvino.mp3"

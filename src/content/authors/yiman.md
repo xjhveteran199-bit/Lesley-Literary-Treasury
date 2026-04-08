@@ -14,7 +14,7 @@ era: "21世纪"
 years:
   birth: 1985
   death: null
-portrait: "/images/authors/yiman.webp"
+portrait: "/images/authors/yiman.svg"
 color: "#C4856A"
 audio:
   file: "/audio/yiman.mp3"

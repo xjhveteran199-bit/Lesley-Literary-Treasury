@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1888
   death: 1935
-portrait: "/images/authors/pessoa.webp"
+portrait: "/images/authors/pessoa.svg"
 color: "#E8A87C"
 audio:
   file: "/audio/pessoa.mp3"

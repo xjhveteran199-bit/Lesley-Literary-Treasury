@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1962
   death: null
-portrait: "/images/authors/haruki-ogawa.webp"
+portrait: "/images/authors/haruki-ogawa.svg"
 color: "#9BA8AB"
 audio:
   file: "/audio/haruki-ogawa.mp3"

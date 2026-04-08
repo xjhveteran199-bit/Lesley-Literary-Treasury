@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1964
   death: null
-portrait: "/images/authors/banana-yoshimoto.webp"
+portrait: "/images/authors/banana-yoshimoto.svg"
 color: "#E8B4B8"
 audio:
   file: "/audio/banana-yoshimoto.mp3"

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1923
   death: 2012
-portrait: "/images/authors/wislawa-szymborska.webp"
+portrait: "/images/authors/wislawa-szymborska.svg"
 color: "#9B7B8E"
 audio:
   file: "/audio/wislawa-szymborska.mp3"

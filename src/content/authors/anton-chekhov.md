@@ -14,7 +14,7 @@ era: "19世纪"
 years:
   birth: 1860
   death: 1904
-portrait: "/images/authors/anton-chekhov.webp"
+portrait: "/images/authors/anton-chekhov.svg"
 color: "#6B7B6B"
 audio:
   file: "/audio/anton-chekhov.mp3"

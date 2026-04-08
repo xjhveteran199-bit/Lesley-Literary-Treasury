@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7B6B20"/>
+      <stop offset="100%" style="stop-color:#8B7B6B40"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#bg)"/>
+  <!-- rain drops scattered -->
+  <path d="M45 35 Q47 30 49 35 Q47 40 45 35Z" fill="#8B7B6B" opacity="0.25"/>
+  <path d="M60 50 Q62 45 64 50 Q62 55 60 50Z" fill="#8B7B6B" opacity="0.2"/>
+  <path d="M35 60 Q37 55 39 60 Q37 65 35 60Z" fill="#8B7B6B" opacity="0.18"/>
+  <path d="M155 140 Q157 135 159 140 Q157 145 155 140Z" fill="#8B7B6B" opacity="0.25"/>
+  <path d="M165 155 Q167 150 169 155 Q167 160 165 155Z" fill="#8B7B6B" opacity="0.2"/>
+  <path d="M145 160 Q147 155 149 160 Q147 165 145 160Z" fill="#8B7B6B" opacity="0.18"/>
+  <path d="M170 168 Q172 163 174 168 Q172 173 170 168Z" fill="#8B7B6B" opacity="0.15"/>
+  <path d="M50 75 Q52 70 54 75 Q52 80 50 75Z" fill="#8B7B6B" opacity="0.12"/>
+  <path d="M155 125 Q157 120 159 125 Q157 130 155 125Z" fill="#8B7B6B" opacity="0.12"/>
+  <text x="100" y="115" text-anchor="middle" font-family="serif" font-size="72" font-weight="bold" fill="#8B7B6B">杜</text>
+</svg>

@@ -22,7 +22,7 @@ const authors = defineCollection({
       birth: z.number(),
       death: z.number().nullable(),
     }),
-    portrait: z.string().default('/images/authors/default.webp'),
+    portrait: z.string().default('/images/authors/default.svg'),
     color: z.string().default('#E07A5F'),
     audio: z.object({
       file: z.string(),
