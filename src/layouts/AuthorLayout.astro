@@ -33,9 +33,7 @@ const lifespan = years.death ? `${years.birth}–${years.death}` : `${years.birt
           <!-- Portrait -->
           <div class="flex-shrink-0">
             <div class="w-32 h-32 md:w-40 md:h-40 blob-shape overflow-hidden shadow-float" style={`border: 4px solid ${color};`}>
-              <div class="w-full h-full flex items-center justify-center text-5xl md:text-6xl font-display font-bold" style={`background: ${color}20; color: ${color};`}>
-                {name.zh[0]}
-              </div>
+              <img src={portrait} alt={name.zh} class="w-full h-full object-cover" />
             </div>
           </div>
 

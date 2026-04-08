@@ -6,6 +6,7 @@ interface Author {
   categories: string[];
   years: { birth: number; death: number | null };
   color: string;
+  portrait: string;
   location: { birthplace: string; country: string };
 }
 
@@ -124,10 +125,10 @@ export default function SearchBar({ authors }: SearchBarProps) {
             style={{ animationDelay: `${i * 30}ms` }}
           >
             <div
-              className="w-16 h-16 mx-auto mb-3 blob-shape flex items-center justify-center text-2xl font-display font-bold transition-transform group-hover:scale-110"
-              style={{ background: `${author.color}20`, color: author.color }}
+              className="w-16 h-16 mx-auto mb-3 blob-shape overflow-hidden transition-transform group-hover:scale-110"
+              style={{ border: `2px solid ${author.color}` }}
             >
-              {author.name.zh[0]}
+              <img src={author.portrait} alt={author.name.zh} className="w-full h-full object-cover" />
             </div>
             <h3 className="font-display text-sm font-bold text-warm-dark leading-tight mb-1">
               {author.name.zh}

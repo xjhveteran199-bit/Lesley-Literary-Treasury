@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface Author {
   slug: string;
@@ -16,59 +16,13 @@ interface WorldMapProps {
 }
 
 export default function WorldMap({ authors }: WorldMapProps) {
-  const [mounted, setMounted] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-cream">
-        <div className="text-warm-muted font-body text-lg">Loading map...</div>
-      </div>
-    );
-  }
-
-  return <MapInner authors={authors} activeCategory={activeCategory} setActiveCategory={setActiveCategory} playingAudio={playingAudio} setPlayingAudio={setPlayingAudio} />;
-}
-
-function MapInner({ authors, activeCategory, setActiveCategory, playingAudio, setPlayingAudio }: WorldMapProps & {
-  activeCategory: string | null;
-  setActiveCategory: (c: string | null) => void;
-  playingAudio: string | null;
-  setPlayingAudio: (s: string | null) => void;
-}) {
-  const [L, setL] = useState<any>(null);
-  const [MapComponents, setMapComponents] = useState<any>(null);
-
-  useEffect(() => {
-    Promise.all([
-      import('leaflet'),
-      import('react-leaflet'),
-    ]).then(([leaflet, reactLeaflet]) => {
-      setL(leaflet.default);
-      setMapComponents(reactLeaflet);
-    });
-  }, []);
-
-  if (!L || !MapComponents) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-cream">
-        <div className="text-warm-muted font-body text-lg animate-pulse">正在加载文学世界地图...</div>
-      </div>
-    );
-  }
-
-  const { MapContainer, TileLayer, Marker, Popup } = MapComponents;
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
+  const markersRef = useRef<any[]>([]);
 
   const categories = [...new Set(authors.flatMap(a => a.categories))];
-
-  const filteredAuthors = activeCategory
-    ? authors.filter(a => a.categories.includes(activeCategory))
-    : authors;
 
   const categoryLabels: Record<string, string> = {
     poetry: '诗歌',
@@ -80,39 +34,109 @@ function MapInner({ authors, activeCategory, setActiveCategory, playingAudio, se
     children: '儿童文学',
   };
 
-  function createAuthorIcon(author: Author) {
-    return L.divIcon({
-      className: 'author-marker-wrapper',
-      html: `
-        <div class="author-marker" style="border-color: ${author.color}">
-          <div style="width:100%;height:100%;background:${author.color}20;display:flex;align-items:center;justify-content:center;font-size:20px;font-family:'LXGW WenKai',sans-serif;color:${author.color};font-weight:700;">
-            ${author.name.zh[0]}
-          </div>
-        </div>
-      `,
-      iconSize: [48, 48],
-      iconAnchor: [24, 24],
-      popupAnchor: [0, -28],
-    });
-  }
+  const filteredAuthors = activeCategory
+    ? authors.filter(a => a.categories.includes(activeCategory))
+    : authors;
 
-  function handlePlayAudio(audioFile: string) {
-    if (playingAudio === audioFile) {
-      setPlayingAudio(null);
-      document.querySelectorAll('audio').forEach(a => a.pause());
-      return;
-    }
-    document.querySelectorAll('audio').forEach(a => a.pause());
-    setPlayingAudio(audioFile);
-    const audio = new Audio(audioFile);
-    audio.play().catch(() => {});
-    audio.onended = () => setPlayingAudio(null);
-  }
+  useEffect(() => {
+    if (!mapRef.current || mapInstanceRef.current) return;
+
+    import('leaflet').then((leafletModule) => {
+      const L = leafletModule.default || leafletModule;
+
+      const map = L.map(mapRef.current!, {
+        center: [30, 20],
+        zoom: 2,
+        minZoom: 2,
+        maxZoom: 12,
+        zoomControl: false,
+        attributionControl: false,
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+      }).addTo(map);
+
+      mapInstanceRef.current = map;
+
+      // Force a resize after mount
+      setTimeout(() => map.invalidateSize(), 100);
+    });
+
+    return () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
+      }
+    };
+  }, []);
+
+  // Update markers when filter changes
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    if (!map) return;
+
+    import('leaflet').then((leafletModule) => {
+      const L = leafletModule.default || leafletModule;
+
+      // Remove old markers
+      markersRef.current.forEach(m => map.removeLayer(m));
+      markersRef.current = [];
+
+      // Add new markers
+      filteredAuthors.forEach(author => {
+        const icon = L.divIcon({
+          className: '',
+          html: `<div style="width:48px;height:48px;border-radius:50%;border:3px solid ${author.color};overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.15);cursor:pointer;background:#fff;">
+            <img src="${author.portrait}" alt="${author.name.zh}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:${author.color};background:${author.color}20;font-family:serif\\'>${author.name.zh[0]}</div>'" />
+          </div>`,
+          iconSize: [48, 48],
+          iconAnchor: [24, 24],
+          popupAnchor: [0, -28],
+        });
+
+        const marker = L.marker(
+          [author.location.coordinates.lat, author.location.coordinates.lng],
+          { icon }
+        ).addTo(map);
+
+        const popupContent = `
+          <div style="padding:16px;font-family:'LXGW WenKai',sans-serif;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+              <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:2px solid ${author.color};flex-shrink:0;background:#fff;">
+                <img src="${author.portrait}" alt="${author.name.zh}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:16px;color:#2D2A26;">${author.name.zh}</div>
+                <div style="font-size:12px;color:#8B8680;font-style:italic;">${author.name.original}</div>
+                <div style="font-size:12px;color:#8B8680;">${author.location.birthplace}</div>
+              </div>
+            </div>
+            ${author.audio ? `
+              <div style="margin-bottom:12px;padding:8px;background:#FFF8F0;border-radius:8px;">
+                <p style="font-size:12px;color:#2D2A26;font-style:italic;margin:0;">「${author.audio.quote.zh}」</p>
+              </div>
+            ` : ''}
+            <a href="/authors/${author.slug}" style="display:block;text-align:center;padding:8px;border-radius:12px;color:white;font-size:14px;font-weight:700;text-decoration:none;background:${author.color};">
+              探索 ${author.name.zh} 的世界
+            </a>
+          </div>
+        `;
+
+        marker.bindPopup(popupContent, {
+          maxWidth: 300,
+          className: 'author-popup',
+        });
+
+        markersRef.current.push(marker);
+      });
+    });
+  }, [filteredAuthors]);
 
   return (
     <div className="relative w-full h-full map-illustration">
       {/* Category Filter Pills */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] flex gap-2 flex-wrap justify-center px-4 max-w-[90vw]">
+      <div className="absolute top-16 left-1/2 -translate-x-1/2 z-[1000] flex gap-2 flex-wrap justify-center px-4 max-w-[90vw]">
         <button
           onClick={() => setActiveCategory(null)}
           className={`px-4 py-1.5 rounded-pill text-sm font-body transition-all ${
@@ -138,69 +162,8 @@ function MapInner({ authors, activeCategory, setActiveCategory, playingAudio, se
         ))}
       </div>
 
-      <MapContainer
-        center={[30, 20]}
-        zoom={2}
-        minZoom={2}
-        maxZoom={12}
-        style={{ width: '100%', height: '100%' }}
-        zoomControl={false}
-        attributionControl={false}
-      >
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        />
-        {filteredAuthors.map(author => (
-          <Marker
-            key={author.slug}
-            position={[author.location.coordinates.lat, author.location.coordinates.lng]}
-            icon={createAuthorIcon(author)}
-          >
-            <Popup>
-              <div className="p-4 font-body">
-                <div className="flex items-center gap-3 mb-3">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold"
-                    style={{ background: `${author.color}20`, color: author.color }}
-                  >
-                    {author.name.zh[0]}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-warm-dark text-base leading-tight">{author.name.zh}</h3>
-                    <p className="text-warm-muted text-xs font-western">{author.name.original}</p>
-                    <p className="text-warm-muted text-xs">{author.location.birthplace}</p>
-                  </div>
-                </div>
-
-                {author.audio && (
-                  <div className="mb-3 p-2 bg-cream rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handlePlayAudio(author.audio!.file)}
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0 transition-transform hover:scale-110"
-                        style={{ background: author.color }}
-                      >
-                        {playingAudio === author.audio.file ? '⏸' : '▶'}
-                      </button>
-                      <p className="text-xs text-warm-dark italic leading-snug">
-                        「{author.audio.quote.zh}」
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                <a
-                  href={`/authors/${author.slug}`}
-                  className="block w-full text-center py-2 rounded-xl text-white text-sm font-bold transition-transform hover:scale-[1.02]"
-                  style={{ background: author.color }}
-                >
-                  探索 {author.name.zh} 的世界
-                </a>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+      {/* Map container */}
+      <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
 
       {/* Author count badge */}
       <div className="absolute bottom-4 left-4 z-[1000] bg-white/90 backdrop-blur-sm px-4 py-2 rounded-card shadow-card">

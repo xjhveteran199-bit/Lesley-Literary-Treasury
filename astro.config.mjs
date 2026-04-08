@@ -10,7 +10,7 @@ export default defineConfig({
   ],
   vite: {
     ssr: {
-      noExternal: ['react-leaflet', 'leaflet'],
+      noExternal: [],
     },
   },
 });
