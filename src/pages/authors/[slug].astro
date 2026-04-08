@@ -1,0 +1,30 @@
+---
+import AuthorLayout from '../../layouts/AuthorLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const authors = await getCollection('authors', ({ data }) => !data.draft);
+  const sorted = authors.sort((a, b) => (a.data.sortOrder ?? 999) - (b.data.sortOrder ?? 999));
+
+  return sorted.map((author, index) => {
+    const prev = index > 0 ? sorted[index - 1] : null;
+    const next = index < sorted.length - 1 ? sorted[index + 1] : null;
+
+    return {
+      params: { slug: author.slug },
+      props: {
+        author,
+        prevAuthor: prev ? { slug: prev.slug, name: prev.data.name.zh } : null,
+        nextAuthor: next ? { slug: next.slug, name: next.data.name.zh } : null,
+      },
+    };
+  });
+}
+
+const { author, prevAuthor, nextAuthor } = Astro.props;
+const { Content } = await author.render();
+---
+
+<AuthorLayout frontmatter={author.data} slug={author.slug} prevAuthor={prevAuthor} nextAuthor={nextAuthor}>
+  <Content />
+</AuthorLayout>

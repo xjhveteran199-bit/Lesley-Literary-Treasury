@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+import '../styles/illustration.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  accentColor?: string;
+}
+
+const {
+  title = "Lesley的文学宝鉴",
+  description = "一座属于 Lesley 的文学世界地图，收录世界各地的文学灵魂",
+  accentColor,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    {accentColor && (
+      <style define:vars={{ accentColor }}>
+        :root { --author-accent: var(--accentColor); }
+      </style>
+    )}
+  </head>
+  <body class="bg-cream text-warm-dark min-h-screen">
+    <slot />
+  </body>
+</html>

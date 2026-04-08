@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/astro/Header.astro';
+import SearchBar from '../../components/react/SearchBar';
+import { getCollection } from 'astro:content';
+
+const allAuthors = await getCollection('authors', ({ data }) => !data.draft);
+
+const searchAuthors = allAuthors.map(author => ({
+  slug: author.slug,
+  name: author.data.name,
+  categories: author.data.categories,
+  years: author.data.years,
+  color: author.data.color,
+  location: {
+    birthplace: author.data.location.birthplace,
+    country: author.data.location.country,
+  },
+}));
+---
+
+<BaseLayout title="全部作家 — Lesley的文学宝鉴">
+  <Header />
+
+  <main class="pt-20 pb-16 px-4 max-w-6xl mx-auto page-enter">
+    <div class="text-center mb-10">
+      <h1 class="font-display text-3xl md:text-4xl font-bold text-warm-dark mb-3">
+        全部作家
+      </h1>
+      <p class="font-body text-warm-muted max-w-lg mx-auto">
+        探索来自世界各地的文学灵魂，发现他们的故事与作品
+      </p>
+    </div>
+
+    <SearchBar client:load authors={searchAuthors} />
+  </main>
+</BaseLayout>

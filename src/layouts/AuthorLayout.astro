@@ -1,0 +1,144 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/astro/Header.astro';
+import WorkCard from '../components/astro/WorkCard.astro';
+import AudioPlayer from '../components/react/AudioPlayer';
+
+interface Props {
+  frontmatter: any;
+  slug: string;
+  prevAuthor?: { slug: string; name: string } | null;
+  nextAuthor?: { slug: string; name: string } | null;
+}
+
+const { frontmatter, slug, prevAuthor, nextAuthor } = Astro.props;
+const { name, location, years, color, portrait, categories, era, audio, works } = frontmatter;
+
+const categoryLabels: Record<string, string> = {
+  poetry: '诗歌', fiction: '小说', essay: '散文', drama: '戏剧',
+  philosophy: '哲学', comics: '漫画', children: '儿童文学',
+};
+
+const lifespan = years.death ? `${years.birth}–${years.death}` : `${years.birth}–`;
+---
+
+<BaseLayout title={`${name.zh} — Lesley的文学宝鉴`} accentColor={color}>
+  <Header />
+
+  <main class="pt-14 page-enter">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden" style={`background: linear-gradient(135deg, ${color}12 0%, ${color}05 100%);`}>
+      <div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <!-- Portrait -->
+          <div class="flex-shrink-0">
+            <div class="w-32 h-32 md:w-40 md:h-40 blob-shape overflow-hidden shadow-float" style={`border: 4px solid ${color};`}>
+              <div class="w-full h-full flex items-center justify-center text-5xl md:text-6xl font-display font-bold" style={`background: ${color}20; color: ${color};`}>
+                {name.zh[0]}
+              </div>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="text-center md:text-left">
+            <h1 class="font-display text-3xl md:text-5xl font-bold text-warm-dark mb-2">
+              {name.zh}
+            </h1>
+            <p class="font-western text-xl text-warm-muted italic mb-4">{name.original}</p>
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+              <span class="px-3 py-1 rounded-pill text-sm font-body" style={`background: ${color}15; color: ${color};`}>
+                {lifespan}
+              </span>
+              <span class="px-3 py-1 rounded-pill text-sm font-body bg-white/80 text-warm-muted">
+                📍 {location.birthplace}
+              </span>
+              {categories.map((cat: string) => (
+                <span class="px-3 py-1 rounded-pill text-sm font-body bg-white/80 text-warm-muted">
+                  {categoryLabels[cat] || cat}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative elements -->
+      <div class="absolute top-8 right-8 text-4xl opacity-10 animate-float-slow">📖</div>
+      <div class="absolute bottom-8 left-8 text-3xl opacity-10 animate-float">🌿</div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-4 py-12 space-y-12">
+      <!-- Audio Voice Card -->
+      {audio && (
+        <section>
+          <h2 class="font-display text-xl font-bold text-warm-dark mb-4 flex items-center gap-2">
+            <span>🎵</span> 声音名片
+          </h2>
+          <AudioPlayer
+            client:visible
+            audioFile={audio.file}
+            quote={audio.quote}
+            authorName={name.zh}
+            color={color}
+            duration={audio.duration}
+          />
+        </section>
+      )}
+
+      <!-- Biography (rendered from Markdown) -->
+      <section>
+        <article class="prose prose-warm max-w-none font-body text-warm-dark/90 leading-relaxed
+          prose-headings:font-display prose-headings:text-warm-dark
+          prose-h2:text-xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4
+          prose-p:mb-4 prose-p:text-base
+          prose-blockquote:border-l-4 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-warm-muted"
+          style={`--tw-prose-quote-borders: ${color};`}
+        >
+          <slot />
+        </article>
+      </section>
+
+      <!-- Representative Works -->
+      {works.length > 0 && (
+        <section>
+          <h2 class="font-display text-xl font-bold text-warm-dark mb-6 flex items-center gap-2">
+            <span>📚</span> 代表著作
+          </h2>
+          <div class="grid gap-4 md:grid-cols-2">
+            {works.map((work: any, i: number) => (
+              <WorkCard
+                title={work.title}
+                year={work.year}
+                description={work.description}
+                cover={work.cover}
+                color={color}
+                index={i}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Navigation -->
+      <nav class="flex justify-between items-center pt-8 border-t border-warm-border">
+        {prevAuthor ? (
+          <a href={`/authors/${prevAuthor.slug}`} class="group flex items-center gap-2 text-warm-muted hover:text-terracotta transition-colors">
+            <span class="group-hover:-translate-x-1 transition-transform">←</span>
+            <span class="font-body text-sm">{prevAuthor.name}</span>
+          </a>
+        ) : <div />}
+
+        <a href="/authors" class="px-4 py-2 rounded-pill bg-white shadow-card text-warm-muted text-sm font-body hover:shadow-float transition-all">
+          全部作家
+        </a>
+
+        {nextAuthor ? (
+          <a href={`/authors/${nextAuthor.slug}`} class="group flex items-center gap-2 text-warm-muted hover:text-terracotta transition-colors">
+            <span class="font-body text-sm">{nextAuthor.name}</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        ) : <div />}
+      </nav>
+    </div>
+  </main>
+</BaseLayout>

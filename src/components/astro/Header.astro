@@ -1,0 +1,52 @@
+---
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<header class:list={[
+  'fixed top-0 left-0 right-0 z-[1001] transition-all duration-300',
+  transparent ? 'bg-transparent' : 'bg-cream/90 backdrop-blur-sm shadow-card',
+]}>
+  <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="text-2xl">📖</span>
+      <span class="font-display text-lg font-bold text-warm-dark group-hover:text-terracotta transition-colors">
+        Lesley的文学宝鉴
+      </span>
+    </a>
+
+    <div class="flex items-center gap-6">
+      <a
+        href="/"
+        class:list={[
+          'font-body text-sm transition-colors hover:text-terracotta',
+          currentPath === '/' ? 'text-terracotta font-bold' : 'text-warm-muted',
+        ]}
+      >
+        世界地图
+      </a>
+      <a
+        href="/authors"
+        class:list={[
+          'font-body text-sm transition-colors hover:text-terracotta',
+          currentPath.startsWith('/authors') ? 'text-terracotta font-bold' : 'text-warm-muted',
+        ]}
+      >
+        全部作家
+      </a>
+      <a
+        href="/about"
+        class:list={[
+          'font-body text-sm transition-colors hover:text-terracotta',
+          currentPath === '/about' ? 'text-terracotta font-bold' : 'text-warm-muted',
+        ]}
+      >
+        关于
+      </a>
+    </div>
+  </nav>
+</header>

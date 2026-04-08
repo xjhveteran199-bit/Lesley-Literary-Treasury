@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: { zh: string; original?: string };
+  year?: number;
+  description: string;
+  cover?: string;
+  color: string;
+  index: number;
+}
+
+const { title, year, description, cover, color, index } = Astro.props;
+const tiltClass = index % 2 === 0 ? 'tilt-left' : 'tilt-right';
+---
+
+<div class:list={['sketch-card p-5 transition-all', tiltClass]}>
+  <div class="flex items-start gap-4">
+    {cover ? (
+      <img src={cover} alt={title.zh} class="w-16 h-22 rounded-lg object-cover shadow-sm flex-shrink-0" />
+    ) : (
+      <div
+        class="w-16 h-22 rounded-lg flex items-center justify-center flex-shrink-0 text-2xl"
+        style={`background: ${color}15;`}
+      >
+        📕
+      </div>
+    )}
+    <div class="flex-1 min-w-0">
+      <h3 class="font-display text-lg font-bold text-warm-dark leading-tight">
+        {title.zh}
+      </h3>
+      {title.original && (
+        <p class="font-western text-sm text-warm-muted italic mt-0.5">{title.original}</p>
+      )}
+      {year && (
+        <span class="inline-block mt-1 px-2 py-0.5 text-xs rounded-pill font-body" style={`background: ${color}15; color: ${color};`}>
+          {year}
+        </span>
+      )}
+      <p class="text-warm-dark/80 text-sm font-body mt-2 leading-relaxed">{description}</p>
+    </div>
+  </div>
+</div>

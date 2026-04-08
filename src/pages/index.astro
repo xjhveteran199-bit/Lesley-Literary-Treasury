@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/astro/Header.astro';
+import WorldMap from '../components/react/WorldMap';
+import { getCollection } from 'astro:content';
+
+const allAuthors = await getCollection('authors', ({ data }) => !data.draft);
+
+const mapAuthors = allAuthors.map(author => ({
+  slug: author.slug,
+  name: author.data.name,
+  location: author.data.location,
+  portrait: author.data.portrait,
+  color: author.data.color,
+  categories: author.data.categories,
+  audio: author.data.audio,
+  years: author.data.years,
+}));
+---
+
+<BaseLayout title="Lesley的文学宝鉴 — 世界文学地图">
+  <Header transparent={true} />
+
+  <!-- Hero Map Section -->
+  <main class="w-full h-screen relative">
+    <WorldMap client:load authors={mapAuthors} />
+
+    <!-- Welcome overlay (fades out) -->
+    <div id="welcome-overlay" class="absolute inset-0 z-[999] bg-cream flex flex-col items-center justify-center pointer-events-none transition-opacity duration-1000">
+      <div class="text-center page-enter">
+        <p class="text-warm-muted font-body text-sm mb-2">献给 Lesley 的</p>
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-warm-dark mb-4">
+          文学宝鉴
+        </h1>
+        <p class="font-body text-warm-muted text-lg mb-2">
+          一座属于你的世界文学地图
+        </p>
+        <div class="flex items-center justify-center gap-2 mt-6">
+          <span class="animate-float text-2xl">📖</span>
+          <span class="animate-float-slow text-xl" style="animation-delay: 0.3s;">🌿</span>
+          <span class="animate-float text-2xl" style="animation-delay: 0.6s;">✨</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Explore section -->
+  <section class="max-w-4xl mx-auto px-4 py-16 text-center">
+    <h2 class="font-display text-2xl font-bold text-warm-dark mb-4">探索文学世界</h2>
+    <p class="font-body text-warm-muted mb-8 max-w-xl mx-auto">
+      在地图上点击作家标记，发现他们的故事。或者浏览全部作家列表，按类别和地区探索。
+    </p>
+    <a href="/authors" class="inline-block px-8 py-3 bg-terracotta text-white rounded-pill font-body font-bold shadow-card hover:shadow-float transition-all hover:scale-[1.02]">
+      浏览全部作家
+    </a>
+  </section>
+</BaseLayout>
+
+<style>
+  @import 'leaflet/dist/leaflet.css';
+</style>
+
+<script>
+  // Fade out welcome overlay after map loads
+  setTimeout(() => {
+    const overlay = document.getElementById('welcome-overlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 1000);
+    }
+  }, 2500);
+</script>
