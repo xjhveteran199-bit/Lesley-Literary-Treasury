@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1871
   death: 1922
-portrait: "/images/authors/marcel-proust.svg"
+portrait: "/images/authors/marcel-proust.jpg"
 color: "#9E8B7A"
 audio:
   file: "/audio/marcel-proust.mp3"

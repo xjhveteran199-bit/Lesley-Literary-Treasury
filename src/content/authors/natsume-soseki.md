@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1867
   death: 1916
-portrait: "/images/authors/natsume-soseki.svg"
+portrait: "/images/authors/natsume-soseki.jpg"
 color: "#6B8E7B"
 audio:
   file: "/audio/natsume-soseki.mp3"

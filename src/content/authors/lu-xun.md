@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1881
   death: 1936
-portrait: "/images/authors/lu-xun.svg"
+portrait: "/images/authors/lu-xun.jpg"
 color: "#4A4A4A"
 audio:
   file: "/audio/lu-xun.mp3"

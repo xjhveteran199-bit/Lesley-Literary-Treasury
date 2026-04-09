@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1914
   death: 1996
-portrait: "/images/authors/marguerite-duras.svg"
+portrait: "/images/authors/marguerite-duras.png"
 color: "#8B7B6B"
 audio:
   file: "/audio/marguerite-duras.mp3"

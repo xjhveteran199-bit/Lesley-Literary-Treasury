@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
 import { getAllCustomAuthors, type CustomAuthor } from '../../utils/db';
-import { getPortraitUrl } from '../../utils/portraits';
 
 interface Author {
   slug: string;
@@ -38,20 +37,15 @@ export default function SearchBar({ authors: staticAuthors }: SearchBarProps) {
         categories: c.categories,
         years: c.years,
         color: c.color,
-        portrait: getPortraitUrl(c.name.original || c.name.zh, c.portrait),
+        portrait: c.portrait || `/images/authors/${c.id}.jpg`,
         location: { birthplace: c.location.birthplace, country: c.location.country },
         isCustom: true,
       })));
     });
   }, []);
 
-  const authors = [
-    ...staticAuthors.map(a => ({
-      ...a,
-      portrait: getPortraitUrl(a.name.original || a.name.zh),
-    })),
-    ...customAuthors,
-  ];
+  // Use frontmatter portrait directly (real photos)
+  const authors = [...staticAuthors, ...customAuthors];
 
   const categories = useMemo(() => [...new Set(authors.flatMap(a => a.categories))], [authors]);
 

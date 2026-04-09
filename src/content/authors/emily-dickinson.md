@@ -14,7 +14,7 @@ era: "19世纪"
 years:
   birth: 1830
   death: 1886
-portrait: "/images/authors/emily-dickinson.svg"
+portrait: "/images/authors/emily-dickinson.png"
 color: "#C9A87C"
 audio:
   file: "/audio/emily-dickinson.mp3"

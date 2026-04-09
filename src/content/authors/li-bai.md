@@ -14,7 +14,7 @@ era: "8世纪"
 years:
   birth: 701
   death: 762
-portrait: "/images/authors/li-bai.svg"
+portrait: "/images/authors/li-bai.jpg"
 color: "#DAA520"
 audio:
   file: "/audio/li-bai.mp3"

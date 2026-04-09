@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1920
   death: 1977
-portrait: "/images/authors/clarice-lispector.svg"
+portrait: "/images/authors/clarice-lispector.jpg"
 color: "#9B6B7B"
 audio:
   file: "/audio/clarice-lispector.mp3"

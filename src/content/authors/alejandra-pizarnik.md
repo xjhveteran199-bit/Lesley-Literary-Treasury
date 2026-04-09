@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1936
   death: 1972
-portrait: "/images/authors/alejandra-pizarnik.svg"
+portrait: "/images/authors/alejandra-pizarnik.jpg"
 color: "#6B5B8B"
 audio:
   file: "/audio/alejandra-pizarnik.mp3"

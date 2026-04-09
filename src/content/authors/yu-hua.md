@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1960
   death: null
-portrait: "/images/authors/yu-hua.svg"
+portrait: "/images/authors/yu-hua.jpg"
 color: "#B85C3A"
 audio:
   file: "/audio/yu-hua.mp3"

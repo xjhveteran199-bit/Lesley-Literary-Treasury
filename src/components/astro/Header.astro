@@ -9,12 +9,15 @@ const currentPath = Astro.url.pathname;
 
 <header class:list={[
   'fixed top-0 left-0 right-0 z-[1001] transition-all duration-300',
-  transparent ? 'bg-transparent' : 'bg-cream/90 backdrop-blur-sm shadow-card',
+  transparent ? 'bg-transparent text-white' : 'bg-cream/90 backdrop-blur-sm shadow-card',
 ]}>
   <nav class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
     <a href="/" class="flex items-center gap-2 group">
       <span class="text-2xl">📖</span>
-      <span class="font-display text-lg font-bold text-warm-dark group-hover:text-terracotta transition-colors">
+      <span class:list={[
+        'font-display text-lg font-bold group-hover:text-terracotta transition-colors',
+        transparent ? 'text-white' : 'text-warm-dark',
+      ]}>
         Lesley的文学宝鉴
       </span>
     </a>
@@ -24,16 +27,16 @@ const currentPath = Astro.url.pathname;
         href="/"
         class:list={[
           'font-body text-sm transition-colors hover:text-terracotta',
-          currentPath === '/' ? 'text-terracotta font-bold' : 'text-warm-muted',
+          currentPath === '/' ? 'text-terracotta font-bold' : transparent ? 'text-white/70' : 'text-warm-muted',
         ]}
       >
-        世界地图
+        星球地图
       </a>
       <a
         href="/authors"
         class:list={[
           'font-body text-sm transition-colors hover:text-terracotta',
-          currentPath.startsWith('/authors') ? 'text-terracotta font-bold' : 'text-warm-muted',
+          currentPath.startsWith('/authors') ? 'text-terracotta font-bold' : transparent ? 'text-white/70' : 'text-warm-muted',
         ]}
       >
         全部作家
@@ -42,7 +45,7 @@ const currentPath = Astro.url.pathname;
         href="/about"
         class:list={[
           'font-body text-sm transition-colors hover:text-terracotta',
-          currentPath === '/about' ? 'text-terracotta font-bold' : 'text-warm-muted',
+          currentPath === '/about' ? 'text-terracotta font-bold' : transparent ? 'text-white/70' : 'text-warm-muted',
         ]}
       >
         关于
@@ -51,7 +54,7 @@ const currentPath = Astro.url.pathname;
         href="/admin"
         class:list={[
           'font-body text-sm transition-colors hover:text-terracotta',
-          currentPath === '/admin' ? 'text-terracotta font-bold' : 'text-warm-muted',
+          currentPath === '/admin' ? 'text-terracotta font-bold' : transparent ? 'text-white/70' : 'text-warm-muted',
         ]}
       >
         管理

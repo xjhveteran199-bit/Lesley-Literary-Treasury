@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1902
   death: 1988
-portrait: "/images/authors/shen-congwen.svg"
+portrait: "/images/authors/shen-congwen.jpg"
 color: "#7B8B6B"
 audio:
   file: "/audio/shen-congwen.mp3"

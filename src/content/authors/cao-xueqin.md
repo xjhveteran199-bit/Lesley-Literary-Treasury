@@ -14,7 +14,7 @@ era: "18世纪"
 years:
   birth: 1715
   death: 1763
-portrait: "/images/authors/cao-xueqin.svg"
+portrait: "/images/authors/cao-xueqin.jpg"
 color: "#C41E3A"
 audio:
   file: "/audio/cao-xueqin.mp3"

@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1970
   death: null
-portrait: "/images/authors/han-kang.svg"
+portrait: "/images/authors/han-kang.jpg"
 color: "#6B9B8B"
 audio:
   file: "/audio/han-kang.mp3"

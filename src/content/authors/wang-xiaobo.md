@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1952
   death: 1997
-portrait: "/images/authors/wang-xiaobo.svg"
+portrait: "/images/authors/wang-xiaobo.jpg"
 color: "#6B8B6B"
 audio:
   file: "/audio/wang-xiaobo.mp3"

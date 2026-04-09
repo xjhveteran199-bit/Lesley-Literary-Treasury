@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1949
   death: null
-portrait: "/images/authors/haruki-murakami.svg"
+portrait: "/images/authors/haruki-murakami.jpg"
 color: "#4A6670"
 audio:
   file: "/audio/haruki-murakami.mp3"

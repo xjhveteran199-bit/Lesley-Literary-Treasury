@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1931
   death: 2019
-portrait: "/images/authors/toni-morrison.svg"
+portrait: "/images/authors/toni-morrison.jpg"
 color: "#7B5B3B"
 audio:
   file: "/audio/toni-morrison.mp3"

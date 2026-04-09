@@ -14,7 +14,7 @@ era: "21世纪"
 years:
   birth: 1975
   death: null
-portrait: "/images/authors/andres-barba.svg"
+portrait: "/images/authors/andres-barba.jpg"
 color: "#C75B3A"
 audio:
   file: "/audio/andres-barba.mp3"

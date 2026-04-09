@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1904
   death: 1973
-portrait: "/images/authors/pablo-neruda.svg"
+portrait: "/images/authors/pablo-neruda.jpg"
 color: "#6B8B5B"
 audio:
   file: "/audio/pablo-neruda.mp3"

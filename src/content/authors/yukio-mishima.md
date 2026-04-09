@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1925
   death: 1970
-portrait: "/images/authors/yukio-mishima.svg"
+portrait: "/images/authors/yukio-mishima.jpg"
 color: "#8B4040"
 audio:
   file: "/audio/yukio-mishima.mp3"

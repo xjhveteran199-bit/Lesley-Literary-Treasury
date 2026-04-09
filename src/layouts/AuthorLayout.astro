@@ -13,8 +13,8 @@ interface Props {
 
 const { frontmatter, slug, prevAuthor, nextAuthor } = Astro.props;
 const { name, location, years, color, categories, era, audio, works } = frontmatter;
-// Use DiceBear illustration portrait
-const portrait = `https://api.dicebear.com/9.x/adventurer/svg?seed=${encodeURIComponent(name.original || name.zh)}&backgroundColor=transparent`;
+// Use local portrait image from frontmatter (downloaded real photo)
+const portrait = frontmatter.portrait || `/images/authors/${slug}.jpg`;
 
 const categoryLabels: Record<string, string> = {
   poetry: '诗歌', fiction: '小说', essay: '散文', drama: '戏剧',

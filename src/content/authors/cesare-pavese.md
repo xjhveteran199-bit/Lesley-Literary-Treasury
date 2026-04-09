@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1908
   death: 1950
-portrait: "/images/authors/cesare-pavese.svg"
+portrait: "/images/authors/cesare-pavese.jpg"
 color: "#8B8B6B"
 audio:
   file: "/audio/cesare-pavese.mp3"

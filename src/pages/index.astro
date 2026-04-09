@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/astro/Header.astro';
-import WorldMap from '../components/react/WorldMap';
+import Globe3D from '../components/react/Globe3D';
+import BgmPlayer from '../components/react/BgmPlayer';
 import { getCollection } from 'astro:content';
 
 const allAuthors = await getCollection('authors', ({ data }) => !data.draft);
@@ -21,19 +22,22 @@ const mapAuthors = allAuthors.map(author => ({
 <BaseLayout title="Lesley的文学宝鉴 — 世界文学地图">
   <Header transparent={true} />
 
-  <!-- Hero Map Section -->
+  <!-- BGM Player -->
+  <BgmPlayer client:load src="/audio/bgm-huahai.mp3" />
+
+  <!-- Hero Globe Section -->
   <main class="w-full h-screen relative">
-    <WorldMap client:load authors={mapAuthors} />
+    <Globe3D client:load authors={mapAuthors} />
 
     <!-- Welcome overlay (fades out) -->
-    <div id="welcome-overlay" class="absolute inset-0 z-[999] bg-cream flex flex-col items-center justify-center pointer-events-none transition-opacity duration-1000">
+    <div id="welcome-overlay" class="absolute inset-0 z-[999] flex flex-col items-center justify-center pointer-events-none transition-opacity duration-1000" style="background: radial-gradient(ellipse at center, #0a0a2e 0%, #000 100%);">
       <div class="text-center page-enter">
-        <p class="text-warm-muted font-body text-sm mb-2">献给 Lesley 的</p>
-        <h1 class="font-display text-4xl md:text-6xl font-bold text-warm-dark mb-4">
+        <p class="text-white/50 font-body text-sm mb-2">献给 Lesley 的</p>
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-4">
           文学宝鉴
         </h1>
-        <p class="font-body text-warm-muted text-lg mb-2">
-          一座属于你的世界文学地图
+        <p class="font-body text-white/60 text-lg mb-2">
+          一颗属于你的文学星球
         </p>
         <div class="flex items-center justify-center gap-2 mt-6">
           <span class="animate-float text-2xl">📖</span>

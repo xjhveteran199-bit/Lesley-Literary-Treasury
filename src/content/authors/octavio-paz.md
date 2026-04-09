@@ -14,7 +14,7 @@ era: "20世纪"
 years:
   birth: 1914
   death: 1998
-portrait: "/images/authors/octavio-paz.svg"
+portrait: "/images/authors/octavio-paz.jpg"
 color: "#8B6B4B"
 audio:
   file: "/audio/octavio-paz.mp3"
