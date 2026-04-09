@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getAllCustomAuthors, type CustomAuthor } from '../../utils/db';
 
 interface Author {
@@ -15,6 +15,15 @@ interface Author {
 
 interface Globe3DProps {
   authors: Author[];
+}
+
+interface ArcData {
+  startLat: number;
+  startLng: number;
+  endLat: number;
+  endLng: number;
+  color: string;
+  label: string;
 }
 
 const categoryLabels: Record<string, string> = {
@@ -36,16 +45,74 @@ function customToAuthor(c: CustomAuthor): Author {
   };
 }
 
+// Compute relationship arcs: authors sharing categories AND overlapping eras
+function computeArcs(authors: Author[]): ArcData[] {
+  const arcs: ArcData[] = [];
+  const seen = new Set<string>();
+
+  for (let i = 0; i < authors.length; i++) {
+    for (let j = i + 1; j < authors.length; j++) {
+      const a = authors[i], b = authors[j];
+
+      // Must share at least one category
+      const sharedCats = a.categories.filter(c => b.categories.includes(c));
+      if (sharedCats.length === 0) continue;
+
+      // Must be in overlapping era (within 50 years of each other)
+      const aEnd = a.years.death || (a.years.birth + 80);
+      const bEnd = b.years.death || (b.years.birth + 80);
+      const overlap = Math.min(aEnd, bEnd) - Math.max(a.years.birth, b.years.birth);
+      if (overlap < 0) continue;
+
+      // Skip if same location (distance < 2 degrees)
+      const dist = Math.abs(a.location.coordinates.lat - b.location.coordinates.lat) +
+                   Math.abs(a.location.coordinates.lng - b.location.coordinates.lng);
+      if (dist < 2) continue;
+
+      const key = [a.slug, b.slug].sort().join('-');
+      if (seen.has(key)) continue;
+      seen.add(key);
+
+      arcs.push({
+        startLat: a.location.coordinates.lat,
+        startLng: a.location.coordinates.lng,
+        endLat: b.location.coordinates.lat,
+        endLng: b.location.coordinates.lng,
+        color: a.color,
+        label: `${a.name.zh} ↔ ${b.name.zh}`,
+      });
+    }
+  }
+  return arcs;
+}
+
+const MARKER_SIZE_KEY = 'globe-marker-size';
+const SHOW_ARCS_KEY = 'globe-show-arcs';
+
 export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
   const globeContainerRef = useRef<HTMLDivElement>(null);
   const globeInstanceRef = useRef<any>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [hoveredAuthor, setHoveredAuthor] = useState<Author | null>(null);
   const [selectedAuthor, setSelectedAuthor] = useState<Author | null>(null);
   const [customAuthors, setCustomAuthors] = useState<Author[]>([]);
-  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [markerSize, setMarkerSize] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      return parseInt(localStorage.getItem(MARKER_SIZE_KEY) || '40', 10);
+    }
+    return 40;
+  });
+  const [showArcs, setShowArcs] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(SHOW_ARCS_KEY) !== 'false';
+    }
+    return true;
+  });
+  const [showSettings, setShowSettings] = useState(false);
+
   const setSelectedRef = useRef(setSelectedAuthor);
   setSelectedRef.current = setSelectedAuthor;
+  const markerSizeRef = useRef(markerSize);
+  markerSizeRef.current = markerSize;
 
   useEffect(() => {
     getAllCustomAuthors().then(list => {
@@ -57,11 +124,17 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
     });
   }, []);
 
-  // Resolve portrait: prefer local jpg/png, fall back to frontmatter path
+  // Save settings
+  useEffect(() => { localStorage.setItem(MARKER_SIZE_KEY, String(markerSize)); }, [markerSize]);
+  useEffect(() => { localStorage.setItem(SHOW_ARCS_KEY, String(showArcs)); }, [showArcs]);
+
   const resolvePortrait = (a: Author) => {
-    // If portrait already points to a real image, use it
+    // Check for user-uploaded custom portrait
+    if (typeof window !== 'undefined') {
+      const custom = localStorage.getItem(`portrait-${a.slug}`);
+      if (custom) return custom;
+    }
     if (a.portrait && !a.portrait.endsWith('.svg')) return a.portrait;
-    // Try jpg fallback
     return `/images/authors/${a.slug}.jpg`;
   };
 
@@ -76,6 +149,8 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
     ? authors.filter(a => a.categories.includes(activeCategory))
     : authors;
 
+  const arcs = showArcs ? computeArcs(filteredAuthors) : [];
+
   // Build globe
   useEffect(() => {
     if (!globeContainerRef.current) return;
@@ -85,7 +160,6 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
       if (cancelled || !globeContainerRef.current) return;
       const Globe = mod.default;
 
-      // Clear previous
       if (globeInstanceRef.current) {
         globeInstanceRef.current._destructor?.();
         globeContainerRef.current.innerHTML = '';
@@ -99,58 +173,55 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
         .atmosphereColor('#E07A5F')
         .atmosphereAltitude(0.2)
         .pointOfView({ lat: 30, lng: 20, altitude: 2.2 })
-        // Author markers as HTML elements
+        // HTML markers
         .htmlElementsData(filteredAuthors)
         .htmlLat((d: any) => d.location.coordinates.lat)
         .htmlLng((d: any) => d.location.coordinates.lng)
         .htmlAltitude(0.02)
         .htmlElement((d: any) => {
+          const size = markerSizeRef.current;
           const el = document.createElement('div');
           el.className = 'globe-marker';
+          el.dataset.slug = d.slug;
           el.style.cssText = `
-            width: 40px; height: 40px; border-radius: 50%;
+            width: ${size}px; height: ${size}px; border-radius: 50%;
             border: 3px solid ${d.color};
             overflow: hidden; cursor: pointer;
-            background: #fff;
+            background: #fff; position: relative;
             box-shadow: 0 2px 12px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
           `;
           el.innerHTML = `<img src="${d.portrait}" alt="${d.name.zh}"
             style="width:100%;height:100%;object-fit:cover;"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:${d.color};background:${d.color}20;font-family:serif\\'>${d.name.zh[0]}</div>'" />`;
+            onerror="this.style.display='none';this.parentElement.innerHTML+='<div style=\\'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${Math.max(12, size/3)}px;font-weight:700;color:${d.color};background:${d.color}20;font-family:serif\\'>${d.name.zh[0]}</div>'" />`;
 
-          // Tooltip element
+          // Tooltip
           const tooltip = document.createElement('div');
-          tooltip.className = 'globe-tooltip';
           tooltip.style.cssText = `
-            position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.8); color: white; padding: 4px 10px;
+            position: absolute; bottom: ${size + 6}px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.85); color: white; padding: 4px 10px;
             border-radius: 8px; font-size: 12px; white-space: nowrap;
             font-family: 'LXGW WenKai', sans-serif; pointer-events: none;
             opacity: 0; transition: opacity 0.2s ease;
           `;
           tooltip.textContent = d.name.zh;
-          el.style.position = 'relative';
           el.appendChild(tooltip);
 
-          el.addEventListener('mouseenter', (e) => {
-            el.style.transform = 'scale(1.4)';
+          el.addEventListener('mouseenter', () => {
+            el.style.transform = 'scale(1.3)';
             el.style.boxShadow = `0 0 20px ${d.color}80`;
             el.style.zIndex = '100';
             tooltip.style.opacity = '1';
           });
-
           el.addEventListener('mouseleave', () => {
             el.style.transform = 'scale(1)';
             el.style.boxShadow = '0 2px 12px rgba(0,0,0,0.3)';
             el.style.zIndex = '1';
             tooltip.style.opacity = '0';
           });
-
           el.addEventListener('click', (e) => {
             e.stopPropagation();
             setSelectedRef.current(d);
-            // Fly to the author's location
             globe.pointOfView({
               lat: d.location.coordinates.lat,
               lng: d.location.coordinates.lng,
@@ -160,6 +231,19 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
 
           return el;
         })
+        // Arcs for relationships
+        .arcsData(arcs)
+        .arcStartLat((d: any) => d.startLat)
+        .arcStartLng((d: any) => d.startLng)
+        .arcEndLat((d: any) => d.endLat)
+        .arcEndLng((d: any) => d.endLng)
+        .arcColor((d: any) => [`${d.color}60`, `${d.color}20`])
+        .arcStroke(0.4)
+        .arcDashLength(0.4)
+        .arcDashGap(0.2)
+        .arcDashAnimateTime(4000)
+        .arcAltitudeAutoScale(0.3)
+        .arcLabel((d: any) => `<span style="font-family:'LXGW WenKai',sans-serif;font-size:12px;color:white;background:rgba(0,0,0,0.7);padding:2px 8px;border-radius:6px;">${d.label}</span>`)
         .width(globeContainerRef.current.clientWidth)
         .height(globeContainerRef.current.clientHeight);
 
@@ -170,15 +254,12 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
       globe.controls().minDistance = 150;
       globe.controls().maxDistance = 600;
 
-      // Stop auto-rotate on interaction, resume after 5s
       let rotateTimer: any = null;
       const pauseRotation = () => {
         globe.controls().autoRotate = false;
         clearTimeout(rotateTimer);
         rotateTimer = setTimeout(() => {
-          if (globeInstanceRef.current) {
-            globe.controls().autoRotate = true;
-          }
+          if (globeInstanceRef.current) globe.controls().autoRotate = true;
         }, 5000);
       };
       globeContainerRef.current.addEventListener('mousedown', pauseRotation);
@@ -187,16 +268,33 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
       globeInstanceRef.current = globe;
     });
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
-  // Update data when filter changes
+  // Update markers + arcs when filter/size/arcs change
   useEffect(() => {
-    if (!globeInstanceRef.current) return;
-    globeInstanceRef.current.htmlElementsData(filteredAuthors);
-  }, [activeCategory, customAuthors]);
+    const globe = globeInstanceRef.current;
+    if (!globe) return;
+
+    // Re-render markers with new size
+    globe.htmlElementsData([]);
+    requestAnimationFrame(() => {
+      globe.htmlElementsData(filteredAuthors);
+      globe.arcsData(arcs);
+    });
+  }, [activeCategory, customAuthors, markerSize, showArcs]);
+
+  // Listen for portrait updates from PortraitUpload
+  useEffect(() => {
+    const handler = () => {
+      const globe = globeInstanceRef.current;
+      if (!globe) return;
+      globe.htmlElementsData([]);
+      requestAnimationFrame(() => globe.htmlElementsData(filteredAuthors));
+    };
+    window.addEventListener('portrait-updated', handler);
+    return () => window.removeEventListener('portrait-updated', handler);
+  }, [filteredAuthors]);
 
   // Resize handler
   useEffect(() => {
@@ -209,8 +307,6 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const closePopup = () => setSelectedAuthor(null);
 
   return (
     <div className="relative w-full h-full" style={{ background: '#0a0a2e' }}>
@@ -244,20 +340,73 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
       {/* Globe container */}
       <div ref={globeContainerRef} style={{ width: '100%', height: '100%' }} />
 
-      {/* Author count badge */}
-      <div className="absolute bottom-4 left-4 z-[100] bg-black/40 backdrop-blur-sm px-4 py-2 rounded-card">
-        <span className="text-white/80 text-sm font-body">
-          共 <span className="text-terracotta font-bold">{filteredAuthors.length}</span> 位作家
-        </span>
+      {/* Bottom-left: author count + settings toggle */}
+      <div className="absolute bottom-4 left-4 z-[100] flex flex-col gap-2">
+        {/* Settings panel */}
+        {showSettings && (
+          <div className="bg-black/60 backdrop-blur-md px-4 py-3 rounded-xl w-56 animate-slide-up">
+            {/* Marker size slider */}
+            <div className="mb-3">
+              <label className="text-white/70 text-xs font-body block mb-1">
+                头像大小: {markerSize}px
+              </label>
+              <input
+                type="range"
+                min="24"
+                max="64"
+                step="4"
+                value={markerSize}
+                onChange={e => setMarkerSize(parseInt(e.target.value))}
+                className="w-full h-1 accent-terracotta cursor-pointer"
+              />
+              <div className="flex justify-between text-white/40 text-[10px] mt-0.5">
+                <span>小</span>
+                <span>大</span>
+              </div>
+            </div>
+
+            {/* Show arcs toggle */}
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showArcs}
+                onChange={e => setShowArcs(e.target.checked)}
+                className="accent-terracotta"
+              />
+              <span className="text-white/70 text-xs font-body">显示关联连线</span>
+            </label>
+          </div>
+        )}
+
+        <div className="flex items-center gap-2">
+          <div className="bg-black/40 backdrop-blur-sm px-4 py-2 rounded-card">
+            <span className="text-white/80 text-sm font-body">
+              共 <span className="text-terracotta font-bold">{filteredAuthors.length}</span> 位作家
+              {showArcs && arcs.length > 0 && (
+                <span className="text-white/40 ml-2 text-xs">{arcs.length} 条关联</span>
+              )}
+            </span>
+          </div>
+          <button
+            onClick={() => setShowSettings(!showSettings)}
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all text-sm ${
+              showSettings
+                ? 'bg-terracotta text-white'
+                : 'bg-black/40 backdrop-blur-sm text-white/60 hover:text-white'
+            }`}
+            title="地图设置"
+          >
+            ⚙
+          </button>
+        </div>
       </div>
 
       {/* Selected author popup card */}
       {selectedAuthor && (
         <div className="absolute bottom-20 right-4 z-[200] w-72 animate-slide-up">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/30">
-            {/* Close button */}
             <button
-              onClick={closePopup}
+              onClick={() => setSelectedAuthor(null)}
               className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/10 flex items-center justify-center text-warm-muted hover:bg-black/20 transition-colors z-10"
             >
               ×
@@ -273,9 +422,7 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
                     src={selectedAuthor.portrait}
                     alt={selectedAuthor.name.zh}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
                 </div>
                 <div>
@@ -290,6 +437,31 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
                   </p>
                 </div>
               </div>
+
+              {/* Show related authors */}
+              {(() => {
+                const related = filteredAuthors.filter(a =>
+                  a.slug !== selectedAuthor.slug &&
+                  a.categories.some(c => selectedAuthor.categories.includes(c))
+                ).slice(0, 3);
+                if (related.length === 0) return null;
+                return (
+                  <div className="mb-3">
+                    <p className="text-[10px] text-warm-muted mb-1">相关作家</p>
+                    <div className="flex gap-1">
+                      {related.map(r => (
+                        <div key={r.slug} className="w-7 h-7 rounded-full overflow-hidden border-2" style={{ borderColor: r.color }}>
+                          <img src={r.portrait} alt={r.name.zh} className="w-full h-full object-cover"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                        </div>
+                      ))}
+                      <span className="text-[10px] text-warm-muted self-center ml-1">
+                        {related.map(r => r.name.zh).join('、')}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {selectedAuthor.audio && (
                 <div className="mb-3 p-2.5 rounded-lg" style={{ background: `${selectedAuthor.color}10` }}>

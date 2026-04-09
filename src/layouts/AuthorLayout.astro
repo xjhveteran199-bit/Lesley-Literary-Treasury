@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/astro/Header.astro';
 import WorkCard from '../components/astro/WorkCard.astro';
 import AudioPlayer from '../components/react/AudioPlayer';
+import PortraitUpload from '../components/react/PortraitUpload';
 
 interface Props {
   frontmatter: any;
@@ -32,12 +33,14 @@ const lifespan = years.death ? `${years.birth}–${years.death}` : `${years.birt
     <section class="relative overflow-hidden" style={`background: linear-gradient(135deg, ${color}12 0%, ${color}05 100%);`}>
       <div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
         <div class="flex flex-col md:flex-row items-center gap-8">
-          <!-- Portrait -->
-          <div class="flex-shrink-0">
-            <div class="w-32 h-32 md:w-40 md:h-40 blob-shape overflow-hidden shadow-float" style={`border: 4px solid ${color};`}>
-              <img src={portrait} alt={name.zh} class="w-full h-full object-cover" />
-            </div>
-          </div>
+          <!-- Portrait (click to upload custom) -->
+          <PortraitUpload
+            client:load
+            slug={slug}
+            currentPortrait={portrait}
+            authorName={name.zh}
+            color={color}
+          />
 
           <!-- Info -->
           <div class="text-center md:text-left">
