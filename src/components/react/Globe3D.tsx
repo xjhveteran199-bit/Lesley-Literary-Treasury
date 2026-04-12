@@ -181,41 +181,52 @@ export default function Globe3D({ authors: staticAuthors }: Globe3DProps) {
         .htmlElement((d: any) => {
           const size = markerSizeRef.current;
           const el = document.createElement('div');
-          el.className = 'globe-marker';
+          // Outer wrapper: no overflow hidden, holds both marker circle and tooltip
+          el.className = 'globe-marker-wrap';
           el.dataset.slug = d.slug;
           el.style.cssText = `
+            position: relative; cursor: pointer;
+            width: ${size}px; height: ${size}px;
+          `;
+
+          // Inner circle: clips the portrait image
+          const circle = document.createElement('div');
+          circle.className = 'globe-marker';
+          circle.style.cssText = `
             width: ${size}px; height: ${size}px; border-radius: 50%;
             border: 3px solid ${d.color};
-            overflow: hidden; cursor: pointer;
-            background: #fff; position: relative;
+            overflow: hidden;
+            background: #fff;
             box-shadow: 0 2px 12px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
           `;
-          el.innerHTML = `<img src="${d.portrait}" alt="${d.name.zh}"
+          circle.innerHTML = `<img src="${d.portrait}" alt="${d.name.zh}"
             style="width:100%;height:100%;object-fit:cover;"
-            onerror="this.style.display='none';this.parentElement.innerHTML+='<div style=\\'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:${Math.max(12, size/3)}px;font-weight:700;color:${d.color};background:${d.color}20;font-family:serif\\'>${d.name.zh[0]}</div>'" />`;
+            onerror="this.style.display='none';this.parentElement.innerHTML+='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:${Math.max(12, size/3)}px;font-weight:700;color:${d.color};background:${d.color}20;font-family:serif\\'>${d.name.zh[0]}</div>'" />`;
+          el.appendChild(circle);
 
-          // Tooltip
+          // Tooltip: positioned above the marker, NOT clipped by overflow
           const tooltip = document.createElement('div');
           tooltip.style.cssText = `
             position: absolute; bottom: ${size + 6}px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.85); color: white; padding: 4px 10px;
-            border-radius: 8px; font-size: 12px; white-space: nowrap;
+            background: rgba(0,0,0,0.85); color: white; padding: 4px 12px;
+            border-radius: 8px; font-size: 13px; white-space: nowrap;
             font-family: 'LXGW WenKai', sans-serif; pointer-events: none;
             opacity: 0; transition: opacity 0.2s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
           `;
           tooltip.textContent = d.name.zh;
           el.appendChild(tooltip);
 
           el.addEventListener('mouseenter', () => {
-            el.style.transform = 'scale(1.3)';
-            el.style.boxShadow = `0 0 20px ${d.color}80`;
+            circle.style.transform = 'scale(1.3)';
+            circle.style.boxShadow = `0 0 20px ${d.color}80`;
             el.style.zIndex = '100';
             tooltip.style.opacity = '1';
           });
           el.addEventListener('mouseleave', () => {
-            el.style.transform = 'scale(1)';
-            el.style.boxShadow = '0 2px 12px rgba(0,0,0,0.3)';
+            circle.style.transform = 'scale(1)';
+            circle.style.boxShadow = '0 2px 12px rgba(0,0,0,0.3)';
             el.style.zIndex = '1';
             tooltip.style.opacity = '0';
           });
