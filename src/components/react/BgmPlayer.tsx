@@ -99,11 +99,20 @@ export default function BgmPlayer() {
   const handleUploadBgm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (!file.type.startsWith('audio/')) return;
+
+    // Validate by extension if MIME type is empty (common on some browsers)
+    const ext = '.' + file.name.split('.').pop()?.toLowerCase();
+    const AUDIO_EXTS = ['.mp3', '.m4a', '.wav', '.ogg', '.flac', '.aac', '.wma', '.opus', '.webm'];
+    const isAudio = file.type.startsWith('audio/') || AUDIO_EXTS.includes(ext);
+    if (!isAudio) {
+      alert('请选择音频文件（MP3、M4A、WAV 等）');
+      return;
+    }
     if (file.size > 20 * 1024 * 1024) {
       alert('音频文件不能超过 20MB');
       return;
     }
+
     const reader = new FileReader();
     reader.onload = () => {
       const dataUrl = reader.result as string;
@@ -113,7 +122,11 @@ export default function BgmPlayer() {
         return { ...s, customTracks: newCustom, currentTrackIndex: PRESET_TRACKS.length + newCustom.length - 1 };
       });
     };
+    reader.onerror = () => alert('读取文件失败，请重试');
     reader.readAsDataURL(file);
+
+    // Reset so same file can be re-selected
+    e.target.value = '';
   };
 
   const removeCustomTrack = (customIndex: number) => {

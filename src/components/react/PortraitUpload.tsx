@@ -7,10 +7,8 @@ interface PortraitUploadProps {
   color: string;
 }
 
-/**
- * Allows users to upload a custom portrait for any author.
- * Stores the portrait as a data URL in localStorage keyed by slug.
- */
+const IMAGE_EXTS = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.bmp', '.heic', '.heif'];
+
 export default function PortraitUpload({ slug, currentPortrait, authorName, color }: PortraitUploadProps) {
   const [portrait, setPortrait] = useState<string>(() => {
     if (typeof window !== 'undefined') {
@@ -25,8 +23,13 @@ export default function PortraitUpload({ slug, currentPortrait, authorName, colo
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate
-    if (!file.type.startsWith('image/')) return;
+    // Validate by extension if MIME type is empty
+    const ext = '.' + file.name.split('.').pop()?.toLowerCase();
+    const isImage = file.type.startsWith('image/') || IMAGE_EXTS.includes(ext);
+    if (!isImage) {
+      alert('请选择图片文件');
+      return;
+    }
     if (file.size > 5 * 1024 * 1024) {
       alert('图片大小不能超过 5MB');
       return;
@@ -38,10 +41,13 @@ export default function PortraitUpload({ slug, currentPortrait, authorName, colo
       localStorage.setItem(`portrait-${slug}`, dataUrl);
       setPortrait(dataUrl);
       setShowUpload(false);
-      // Dispatch event so other components can react
       window.dispatchEvent(new CustomEvent('portrait-updated', { detail: { slug, portrait: dataUrl } }));
     };
+    reader.onerror = () => alert('读取文件失败，请重试');
     reader.readAsDataURL(file);
+
+    // Reset input so same file can be re-selected
+    e.target.value = '';
   };
 
   const handleReset = () => {
@@ -53,13 +59,21 @@ export default function PortraitUpload({ slug, currentPortrait, authorName, colo
 
   return (
     <div className="relative group flex-shrink-0">
+      {/* File input always in DOM (not inside conditional) */}
+      <input
+        ref={fileRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleUpload}
+      />
+
       <div
         className="w-32 h-32 md:w-40 md:h-40 blob-shape overflow-hidden shadow-float cursor-pointer"
         style={{ border: `4px solid ${color}` }}
         onClick={() => setShowUpload(!showUpload)}
       >
         <img src={portrait} alt={authorName} className="w-full h-full object-cover" />
-        {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
           <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity text-sm font-body">
             更换头像
@@ -67,16 +81,8 @@ export default function PortraitUpload({ slug, currentPortrait, authorName, colo
         </div>
       </div>
 
-      {/* Upload panel */}
       {showUpload && (
         <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-2xl p-3 z-50 w-48 animate-slide-up">
-          <input
-            ref={fileRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleUpload}
-          />
           <button
             onClick={() => fileRef.current?.click()}
             className="w-full px-3 py-2 text-sm font-body rounded-lg hover:bg-cream transition-colors text-warm-dark text-left"
