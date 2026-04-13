@@ -6,7 +6,7 @@ interface Track {
 }
 
 const PRESET_TRACKS: Track[] = [
-  { name: '花海 — 周杰伦', src: '/audio/bgm-huahai.mp3' },
+  { name: '笔尖下的心跳', src: '/audio/bgm-bijian.mp3' },
 ];
 
 const STORAGE_KEY = 'bgm-settings';
