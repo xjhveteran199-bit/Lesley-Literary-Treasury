@@ -59,6 +59,22 @@ const currentPath = Astro.url.pathname;
       >
         管理
       </a>
+      <button
+        id="ai-settings-btn"
+        class:list={[
+          'font-body text-sm transition-colors hover:text-terracotta',
+          transparent ? 'text-white/70' : 'text-warm-muted',
+        ]}
+        title="AI 设置"
+      >
+        🤖
+      </button>
     </div>
   </nav>
 </header>
+
+<script>
+  document.getElementById('ai-settings-btn')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('open-ai-settings'));
+  });
+</script>

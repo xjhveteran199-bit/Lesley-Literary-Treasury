@@ -23,8 +23,9 @@ export async function getStaticPaths() {
 
 const { author, prevAuthor, nextAuthor } = Astro.props;
 const { Content } = await author.render();
+const biography = author.body || '';
 ---
 
-<AuthorLayout frontmatter={author.data} slug={author.slug} prevAuthor={prevAuthor} nextAuthor={nextAuthor}>
+<AuthorLayout frontmatter={author.data} slug={author.slug} prevAuthor={prevAuthor} nextAuthor={nextAuthor} biography={biography}>
   <Content />
 </AuthorLayout>

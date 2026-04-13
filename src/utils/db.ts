@@ -33,7 +33,7 @@ export interface CustomAuthor {
 }
 
 const DB_NAME = 'lesley-literary';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_NAME = 'authors';
 
 function openDB(): Promise<IDBDatabase> {
@@ -43,6 +43,9 @@ function openDB(): Promise<IDBDatabase> {
       const db = request.result;
       if (!db.objectStoreNames.contains(STORE_NAME)) {
         db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      }
+      if (!db.objectStoreNames.contains('conversations')) {
+        db.createObjectStore('conversations', { keyPath: 'slug' });
       }
     };
     request.onsuccess = () => resolve(request.result);

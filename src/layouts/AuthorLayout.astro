@@ -4,15 +4,17 @@ import Header from '../components/astro/Header.astro';
 import WorkCard from '../components/astro/WorkCard.astro';
 import AudioPlayer from '../components/react/AudioPlayer';
 import PortraitUpload from '../components/react/PortraitUpload';
+import AuthorChat from '../components/react/AuthorChat';
 
 interface Props {
   frontmatter: any;
   slug: string;
   prevAuthor?: { slug: string; name: string } | null;
   nextAuthor?: { slug: string; name: string } | null;
+  biography?: string;
 }
 
-const { frontmatter, slug, prevAuthor, nextAuthor } = Astro.props;
+const { frontmatter, slug, prevAuthor, nextAuthor, biography = '' } = Astro.props;
 const { name, location, years, color, categories, era, audio, works } = frontmatter;
 // Use local portrait image from frontmatter (downloaded real photo)
 const portrait = frontmatter.portrait || `/images/authors/${slug}.jpg`;
@@ -121,6 +123,24 @@ const lifespan = years.death ? `${years.birth}–${years.death}` : `${years.birt
           </div>
         </section>
       )}
+
+      <!-- AI Chat -->
+      <AuthorChat
+        client:visible
+        slug={slug}
+        author={{
+          name,
+          location,
+          categories,
+          era,
+          years,
+          audio,
+          works,
+          biography,
+        }}
+        portrait={portrait}
+        color={color}
+      />
 
       <!-- Navigation -->
       <nav class="flex justify-between items-center pt-8 border-t border-warm-border">
